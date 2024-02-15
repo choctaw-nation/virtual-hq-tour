@@ -1,0 +1,59 @@
+$transition--standard: 0.15s ease-in-out;
+
+/* ////////////
+// TYPOGRAPHY
+///////////// */
+
+$font-headings: pill-gothic-300mg, sans-serif;
+$font-body: gill-sans-nova, "Helvetica Neue", "Noto Sans", "Liberation Sans",
+	Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+	"Noto Color Emoji";
+$font-serif: adobe-garamond-pro, serif;
+
+/* //////////
+// COLORS
+/////////// */
+
+// ABOUT
+$color-purple: #51276e;
+$color-purple--light: #7e42a8;
+$color-purple--dark: #330d48;
+
+// NEWS
+$color-blue: #04a0c8;
+$color-blue--light: #04cdff;
+$color-blue--dark: #115c86;
+
+$color-darkblue: #115c86;
+$color-darkblue--light: #00acd8;
+
+// EVENTS
+$color-green: #0f7b61;
+$color-green--light: #139e7e;
+$color-green--dark: #085642;
+
+$color-orange: #a14f15;
+
+// defined as 'breadcrumb hover link'
+$color-orange--light: #e57005;
+
+// SERVICES
+$color-brown: #bc7115;
+
+// defined as 'h1 / buttons'
+$color-brown--dark: #794601;
+
+// defined as 'a link / hover link / additional heading tags / btn hover
+$color-brown--alt: #975b12;
+
+// CAREERS
+$color-red: #e73d4d;
+$color-red--dark: #a62828;
+
+// SEARCH or misc.
+$color-black: #212529;
+
+$color-off-white: #f8f6f2; // super lightorange?
+$color-off-white--green: #f2f6f5; // super lightgreen?
+$color-off-white--blue: #f3f7f9; // super lightblue?
+$color-off-white--purple: #f5f3f6;

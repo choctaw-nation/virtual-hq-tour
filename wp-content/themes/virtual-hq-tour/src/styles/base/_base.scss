@@ -1,0 +1,33 @@
+@use "../abstracts/variables" as v;
+
+:root {
+	--font-headings: #{v.$font-headings};
+	--font-body: #{v.$font-body};
+	--font-serif: #{v.$font-serif};
+
+	--transition-standard: #{v.$transition--standard};
+
+	--color-purple--light: #{v.$color-purple--light};
+	--color-purple--dark: #{v.$color-purple--dark};
+
+	--color-blue--light: #{v.$color-blue--light};
+	--color-blue--dark: #{v.$color-blue--dark};
+
+	--color-darkblue: #{v.$color-darkblue};
+	--color-darkblue--light: #{v.$color-darkblue--light};
+
+	--color-green--light: #{v.$color-green--light};
+	--color-green--dark: #{v.$color-green--dark};
+
+	--color-orange--light: #{v.$color-orange--light};
+
+	--color-brown--dark: #{v.$color-brown--dark};
+	--color-brown--alt: #{v.$color-brown--alt};
+
+	--color-red--dark: #{v.$color-red--dark};
+
+	--color-off-white: #{v.$color-off-white};
+	--color-off-white--green: #{v.$color-off-white--green};
+	--color-off-white--blue: #{v.$color-off-white--blue};
+	--color-off-white--purple: #{v.$color-off-white--purple};
+}

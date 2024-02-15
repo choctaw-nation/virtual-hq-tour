@@ -1,0 +1,165 @@
+@use "../abstracts/variables" as v;
+
+// Required
+@import "bootstrap/scss/functions";
+
+/**
+* Colors
+* [MOVED] Colors are extended with the map below
+* If you want, you can override the $primary and $secondary here.
+*/
+
+$primary: v.$color-red--dark;
+$secondary: #6c757d;
+
+// ================================================
+
+/**
+* Typography
+*/
+$font-family-sans-serif: v.$font-body;
+$font-family-monospace:
+	Monaspace Neon,
+	"Courier New",
+	monospace;
+
+$font-size-root: 62.5%; // Assuming browser is set to 16px, this will make 1rem = 10px
+$font-size-base: 1.6rem; // Sets the base font size to 16px
+
+// LINKS
+$link-decoration: none;
+// $link-color: v.$color-purple--light;
+// $link-hover-color: rgba(v.$color-purple--light, 0.8);
+
+// HEADINGS
+$headings-font-family: v.$font-headings;
+$headings-font-weight: 600;
+// $headings-color: v.$color-purple--light;
+
+$dropdown-font-size: 2.16rem;
+
+// $body-color: v.$color-black;
+
+// ================================================
+
+/**
+* Buttons
+*/
+$btn-transition: all v.$transition--standard;
+
+$input-btn-padding-x: 1.2rem;
+$input-btn-padding-y: 0.6rem;
+
+$input-btn-padding-x-lg: 1.6rem;
+$input-btn-padding-y-lg: 0.8rem;
+
+$input-btn-padding-x: 0.8rem;
+$input-btn-padding-y: 0.4rem;
+
+// ================================================
+
+/**
+* Spacing
+*/
+$grid-gutter-width: 2.4rem; // 24px
+$spacer: 1.6rem; // 16px
+
+// ================================================
+
+/**
+* Navbar
+*/
+
+$navbar-light-active-color: $secondary;
+$navbar-light-hover-color: $secondary;
+$navbar-light-color: white;
+$navbar-light-icon-color: white;
+$navbar-light-toggler-border-color: white;
+$navbar-light-brand-color: white;
+$navbar-light-brand-hover-color: $secondary;
+
+// ================================================
+
+/**
+* Offcanvas
+*/
+
+$offcanvas-bg-color: $primary;
+$offcanvas-color: white;
+
+// ================================================
+
+/**
+* Options
+* @see https://getbootstrap.com/docs/5.3/customize/options/
+*/
+$enable-shadows: true;
+$enable-dark-mode: false;
+
+// ================================================
+
+@import "bootstrap/scss/variables";
+// @import "bootstrap/scss/variables-dark";
+
+// Map Overrides Here (Optional)
+
+$theme-colors: map-merge(
+	$theme-colors,
+	(
+		"purple": v.$color-purple,
+		"orange": v.$color-orange,
+		"danger": v.$color-red,
+		"red": v.$color-red--dark,
+		"blue": v.$color-blue--dark,
+		"cyan": v.$color-blue,
+		"green": v.$color-green,
+		"dark": v.$color-black,
+		"brown": v.$color-brown,
+	)
+);
+
+// Required Bootstrap Modules
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+
+// Useful Bootstrap Utilities (Optional)
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/close";
+@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/dropdown";
+
+// Optional Bootstrap Modules (w/ Dependencies)
+@import "bootstrap/scss/type";
+// @import "bootstrap/scss/images";
+// @import "bootstrap/scss/tables";
+// @import "bootstrap/scss/forms";
+@import "bootstrap/scss/button-group";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar"; // Requires nav
+// @import "bootstrap/scss/card";
+// @import "bootstrap/scss/breadcrumb";
+// @import "bootstrap/scss/accordion";
+// @import "bootstrap/scss/pagination";
+// @import "bootstrap/scss/badge";
+// @import "bootstrap/scss/alert";
+// @import "bootstrap/scss/progress";
+// @import "bootstrap/scss/list-group";
+// @import "bootstrap/scss/toasts";
+@import "bootstrap/scss/modal"; // Requires transitions
+// @import "bootstrap/scss/tooltip";
+// @import "bootstrap/scss/popover";
+// @import "bootstrap/scss/carousel";
+// @import "bootstrap/scss/spinners";
+// @import "bootstrap/scss/placeholders";
+
+// Helpers
+@import "bootstrap/scss/helpers";
+
+// Utilities
+@import "bootstrap/scss/utilities/api";
