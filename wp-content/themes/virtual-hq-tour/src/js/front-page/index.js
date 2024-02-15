@@ -15,7 +15,7 @@ navigator.geolocation.getCurrentPosition( ( position ) => {
 	const northEastBounds = [ 33.9748, -96.3970819115639 ];
 	const southWestBounds = [ 33.9735, -96.40055805444719 ];
 	const mapOptions = {
-		minZoom: 19,
+		minZoom: 13,
 		maxBounds: [ northEastBounds, southWestBounds ],
 	};
 
