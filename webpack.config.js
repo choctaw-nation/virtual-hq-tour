@@ -63,7 +63,7 @@ function addEntries( array, type ) {
 		} else if ( type === 'pages' ) {
 			entries[
 				`pages/${ assetOutput }`
-			] = `.${ THEME_DIR }/src/js/${ asset }/index.ts`;
+			] = `.${ THEME_DIR }/src/js/${ asset }/index.js`;
 		} else {
 			throw new Error(
 				`Invalid type! Expected "styles" or "pages", received "${ type }"`

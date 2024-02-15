@@ -1,11 +1,11 @@
-import { tileLayer, marker, circle } from 'leaflet/dist/leaflet.js';
+import { marker, circle } from 'leaflet/dist/leaflet.js';
 export function enableGeolocation( leafletMap, CHOCTAW_HQ ) {
-	tileLayer( 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	leafletMap.locate( {
+		setView: true,
 		maxZoom: 19,
-		attribution: '© OpenStreetMap',
-	} ).addTo( leafletMap );
-	leafletMap.locate( { setView: true, maxZoom: 19 } );
-	leafletMap.setView( CHOCTAW_HQ.latlng, CHOCTAW_HQ.zoom );
+		enableHighAccuracy: true,
+	} );
+
 	leafletMap.on( 'locationfound', ( e ) => {
 		var radius = e.accuracy;
 
