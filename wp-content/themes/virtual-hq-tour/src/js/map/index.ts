@@ -1,4 +1,5 @@
 import 'leaflet/dist/leaflet.css';
+import '../../styles/components/leaflet.scss';
 import { map, tileLayer, polygon } from 'leaflet';
 // import 'esri-leaflet';
 // import { vectorBasemapLayer } from 'esri-leaflet-vector';
@@ -57,11 +58,12 @@ class Map {
 			[
 				[ 33.974515, -96.399581 ], // NW
 				[ 33.97401, -96.398705 ], // NE
-				[ 33.9735, -96.3988 ], // SE
+				[ 33.97357, -96.39885 ], // SE
 				[ 33.97418, -96.39988 ], // SW
 			],
 			{ color: 'red' }
 		).addTo( this.#map );
+		firstFloorWest.bindPopup( 'First Floor West' ).openPopup();
 	}
 }
 

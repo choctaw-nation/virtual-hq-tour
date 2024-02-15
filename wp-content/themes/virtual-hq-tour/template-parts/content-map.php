@@ -7,7 +7,7 @@
 
 ?>
 
-<div id="map" style='min-height: 60dvh;'>
+<div id="map">
 	<div class="row justify-content-center align-items-center">
 		<div class="col-4">
 			<div class="spinner-border" role="status">
