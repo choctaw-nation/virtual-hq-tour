@@ -11,7 +11,7 @@ const THEME_DIR = `/wp-content/themes/${ THEME_NAME }`;
  *
  * **Be sure to import page scss in these files**
  */
-const appNames = [ 'front-page' ];
+const appNames = [ 'map' ];
 
 /**
  * For SCSS files (no leading `_`)
@@ -26,7 +26,6 @@ module.exports = {
 			/** Custom entry points */
 			const entries = {
 				global: `.${ THEME_DIR }/src/index.js`,
-				// 'vendors/fontawesome': `.${ THEME_DIR }/src/js/vendors/fontawesome.js`,
 				'vendors/bootstrap': `.${ THEME_DIR }/src/js/vendors/bootstrap.js`,
 				...addEntries( appNames, 'pages' ),
 				...addEntries( styleSheets, 'styles' ),
@@ -63,7 +62,7 @@ function addEntries( array, type ) {
 		} else if ( type === 'pages' ) {
 			entries[
 				`pages/${ assetOutput }`
-			] = `.${ THEME_DIR }/src/js/${ asset }/index.js`;
+			] = `.${ THEME_DIR }/src/js/${ asset }/index.ts`;
 		} else {
 			throw new Error(
 				`Invalid type! Expected "styles" or "pages", received "${ type }"`

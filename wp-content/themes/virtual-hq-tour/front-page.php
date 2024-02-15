@@ -10,17 +10,18 @@
 use ChoctawNation\Asset_Loader;
 use ChoctawNation\Enqueue_Type;
 
-$loader = new Asset_Loader( 'frontPage', Enqueue_Type::both, 'pages' );
+$loader = new Asset_Loader( 'map', Enqueue_Type::both, 'pages' );
 
 get_header(); ?>
 <main class="site-content">
-	<div class="container my-5 py-5">
-		<div class="row">
-			<div class="col">
-				<h1 class="text-center">Welcome to the Choctaw Nation Virtual HQ Tour</h1>
-				<p class="text-center">Take a virtual tour of the Choctaw Nation Headquarters in Durant, Oklahoma. Explore the campus and learn about the history of the Choctaw Nation.</p>
-				<div id="url" data-url="<?php echo get_template_directory_uri() . '/img/map.png'; ?>"></div>
-				<div id="map"></div>
+	<div class="container-fluid">
+		<div class="row justify-content-center my-5 py-5">
+			<div class="col-9 text-center">
+				<h1>Welcome to the Choctaw Nation Virtual HQ Tour</h1>
+				<p>Take a virtual tour of the Choctaw Nation Headquarters in Durant, Oklahoma. Explore the campus and learn about the history of the Choctaw Nation.</p>
+			</div>
+			<div class="col-12 text-center my-3">
+				<?php get_template_part( 'template-parts/content', 'map' ); ?>
 			</div>
 		</div>
 	</div>
