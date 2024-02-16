@@ -1,6 +1,6 @@
 import 'leaflet/dist/leaflet.css';
 import '../../styles/components/leaflet.scss';
-import { map, tileLayer, polygon } from 'leaflet';
+import { map, tileLayer, polygon, popup } from 'leaflet';
 // import 'esri-leaflet';
 // import { vectorBasemapLayer } from 'esri-leaflet-vector';
 import { enableGeolocation } from './geolocation';
@@ -35,11 +35,16 @@ class Map {
 				'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 		} ).addTo( this.#map );
 		this.#map.setView( this.#CHOCTAW_HQ, this.#MIN_ZOOM );
-		// navigator.geolocation.getCurrentPosition( ( position ) => {
-		// vectorBasemapLayer( 'osm/standard', {
-		// 	apiKey: API_KEY,
-		// } ).addTo( leafletMap );
-		// } );
+		this.#map.locate( {
+			maxZoom: 19,
+			enableHighAccuracy: false,
+		} );
+
+		this.#map.on( 'locationfound', this.calcDistance.bind( this ) );
+
+		this.#map.on( 'locationerror', ( e ) => {
+			alert( e.message );
+		} );
 	}
 
 	private showMapButton() {
@@ -64,6 +69,18 @@ class Map {
 			{ color: 'red' }
 		).addTo( this.#map );
 		firstFloorWest.bindPopup( 'First Floor West' ).openPopup();
+	}
+
+	private calcDistance( e ) {
+		const location = e.latlng as L.LatLng;
+		const distance = Math.round(
+			location.distanceTo( this.#CHOCTAW_HQ ) / 1000
+		);
+
+		popup()
+			.setLatLng( this.#CHOCTAW_HQ )
+			.setContent( `You are ${ distance }km from this point` )
+			.openOn( this.#map );
 	}
 }
 
