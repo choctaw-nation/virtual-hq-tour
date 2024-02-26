@@ -20,10 +20,47 @@ get_header(); ?>
 				<h1 class='fs-2'>Welcome to the Choctaw Nation Virtual HQ Tour</h1>
 				<p class='fs-5'>Take a virtual tour of the Choctaw Nation Headquarters in Durant, Oklahoma. Explore the campus and learn about the history of the Choctaw Nation.</p>
 			</div>
+		</div>
+		<div class="row justify-content-center my-5 py-5">
 			<div class="col-12 col-md-9">
 				<div class="ratio ratio-16x9" id='welcome-video'></div>
 			</div>
-			<div class="col-12 text-center my-3">
+		</div>
+		<div class="row justify-content-center my-5 py-5">
+			<div class="col-12 col-md-9">
+				<h2>Using this Map</h2>
+				<p class="fs-5">Pinch/Scroll to zoom, click/tap and hold to move the map. Click a zone to watch the video tour.</p>
+				<?php
+				$sections = array(
+					array(
+						'label' => 'First Floor West',
+						'color' => 'Blue',
+					),
+					array(
+						'label' => 'Main Lobby',
+						'color' => 'Green',
+					),
+					array(
+						'label' => 'Chief\'s Office',
+						'color' => 'Purple',
+					),
+					array(
+						'label' => 'Hall of Chiefs and Code Talkers',
+						'color' => 'Aqua',
+					),
+				);
+				?>
+				<ul class="fs-5">
+					<?php
+					foreach ( $sections as $section ) {
+						echo "<li>{$section['label']}: {$section['color']}</li>";
+					}
+					?>
+				</ul>
+			</div>
+		</div>
+		<div class="row justify-content-center my-5 py-5">
+			<div class="col-10 col-xl-12 text-center my-3">
 				<?php get_template_part( 'template-parts/content', 'map' ); ?>
 			</div>
 		</div>
