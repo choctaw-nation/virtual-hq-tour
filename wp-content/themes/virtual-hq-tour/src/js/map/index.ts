@@ -6,6 +6,7 @@ import { map, tileLayer, polygon, popup, circle, marker, icon } from 'leaflet';
 import { enableGeolocation } from './geolocation';
 import { API_KEY } from './utilities';
 import { VideoPopups } from './VideoPopups';
+import { VideoModal } from './VideoModal';
 
 class Map {
 	private map: L.Map;
@@ -16,16 +17,12 @@ class Map {
 		southWestBounds: [ 33.9725, -96.40055805444719 ],
 	};
 	private videos: VideoPopups;
-	private videoPopUpOptions = {
-		minWidth: 640,
-		keepInView: true,
-	};
 
 	constructor( isMobile = true ) {
-		this.videos = new VideoPopups();
 		if ( ! isMobile ) {
 			this.MIN_ZOOM = 19;
 		}
+		this.videos = new VideoPopups();
 		this.initMap();
 		this.initFirstFloorZones();
 	}
@@ -76,10 +73,11 @@ class Map {
 			color: 'green',
 			radius: 12,
 		} ).addTo( this.map );
-		mainLobby.bindPopup(
-			this.videos.getPopup( 4 ),
-			this.videoPopUpOptions
-		);
+		mainLobby
+			.bindPopup( this.videos.getPopup( 4 ) )
+			.addEventListener( 'click', () => {
+				this.handleModal( 4 );
+			} );
 
 		const chiefsOffice = polygon(
 			[
@@ -90,10 +88,11 @@ class Map {
 			],
 			{ color: 'purple' }
 		).addTo( this.map );
-		chiefsOffice.bindPopup(
-			this.videos.getPopup( 2 ),
-			this.videoPopUpOptions
-		);
+		chiefsOffice
+			.bindPopup( this.videos.getPopup( 2 ) )
+			.addEventListener( 'click', () => {
+				this.handleModal( 2 );
+			} );
 
 		const eastCorridor = polygon(
 			[
@@ -104,10 +103,11 @@ class Map {
 			],
 			{ color: 'aqua' }
 		).addTo( this.map );
-		eastCorridor.bindPopup(
-			this.videos.getPopup( 9 ),
-			this.videoPopUpOptions
-		);
+		eastCorridor
+			.bindPopup( this.videos.getPopup( 9 ) )
+			.addEventListener( 'click', () => {
+				this.handleModal( 9 );
+			} );
 	}
 
 	private calcDistance( e ) {
@@ -128,6 +128,13 @@ class Map {
 				iconUrl: './mapImages/marker-icon-2x.png',
 			} ),
 		} ).addTo( this.map );
+	}
+
+	private handleModal( videoId: number ) {
+		new VideoModal(
+			this.videos.getVideoTitle( videoId ),
+			this.videos.getLiteVimeo( videoId )
+		);
 	}
 }
 

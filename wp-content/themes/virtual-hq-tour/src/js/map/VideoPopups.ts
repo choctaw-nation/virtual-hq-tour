@@ -69,12 +69,25 @@ export class VideoPopups {
 	 * @returns {title:string;id:string}
 	 */
 	getPopup( video: number ): string {
-		return `<div><h2>${
-			this.videos[ video ].title
-		}</h2>${ this.getLiteVimeo( video ) }</div>`;
+		return `<div>
+		<p>${ this.videos[ video ].title }</p>
+		<button class='btn btn-primary' id='modal-trigger'>View Video</button>
+		</div>`;
 	}
 
-	private getLiteVimeo( video: number ): string {
+	getLiteVimeo( video: number ): string {
 		return `<lite-vimeo videotitle="${ this.videos[ video ].title }" videoid="${ this.videos[ video ].id }"></lite-vimeo>`;
+	}
+
+	/**
+	 * Returns a video object
+	 * @param {number} video The video to return
+	 */
+	getVideoObject( video: number ): { title: string; id: string } {
+		return this.videos[ video ];
+	}
+
+	getVideoTitle( video: number ): string {
+		return this.videos[ video ].title;
 	}
 }
