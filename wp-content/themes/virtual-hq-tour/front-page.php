@@ -14,7 +14,7 @@ $loader = new Asset_Loader( 'map', Enqueue_Type::both, 'pages' );
 
 get_header(); ?>
 <main class="site-content">
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row justify-content-center my-5 py-5">
 			<div class="col-9 text-center">
 				<h1 class='fs-2'>Welcome to the Choctaw Nation Virtual HQ Tour</h1>
@@ -29,24 +29,32 @@ get_header(); ?>
 		<div class="row justify-content-center my-5 py-5">
 			<div class="col-12 col-md-9">
 				<h2>Using this Map</h2>
-				<p class="fs-5">Pinch/Scroll to zoom, click/tap and hold to move the map. Click a zone to watch the video tour.</p>
+				<p class="fs-5">Pinch/Scroll to zoom, click/tap and hold to move the map. Click/tap a zone or marker to watch the video tour.</p>
 				<?php
 				$sections = array(
 					array(
 						'label' => 'First Floor West',
-						'color' => 'Blue',
+						'color' => 'Red Zone',
 					),
 					array(
 						'label' => 'Main Lobby',
-						'color' => 'Green',
+						'color' => 'Green Zone',
 					),
 					array(
 						'label' => 'Chief\'s Office',
-						'color' => 'Purple',
+						'color' => 'Purple Marker',
 					),
 					array(
 						'label' => 'Hall of Chiefs and Code Talkers',
-						'color' => 'Aqua',
+						'color' => 'Aqua Marker',
+					),
+					array(
+						'label' => 'East Corridor',
+						'color' => 'Aqua Marker',
+					),
+					array(
+						'label' => 'East Courtyard',
+						'color' => 'Orange Zone',
 					),
 				);
 				?>
