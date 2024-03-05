@@ -8,7 +8,6 @@ export class VideoModal {
 
 	constructor( title: string, liteVimeo: string ) {
 		this.initModal();
-
 		this.modalTitle = document.getElementById( 'videoModalLabel' )!;
 		this.modalBody = document.getElementById( 'modal-video' )!;
 		this.modalTrigger = document.getElementById(
@@ -24,7 +23,7 @@ export class VideoModal {
 	private initModal() {
 		const modalEl = document.getElementById( 'videoModal' );
 		this.modal = new Modal( modalEl );
-		modalEl.addEventListener( 'hidden.bs.modal', ( ev ) => {
+		modalEl.addEventListener( 'hidden.bs.modal', () => {
 			this.resetModal();
 		} );
 	}
