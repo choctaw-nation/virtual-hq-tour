@@ -21,12 +21,12 @@ get_header(); ?>
 				<p class='fs-5'>Take a virtual tour of the Choctaw Nation Headquarters in Durant, Oklahoma. Explore the campus and learn about the history of the Choctaw Nation.</p>
 			</div>
 		</div>
-		<div class="row justify-content-center my-5 py-5">
+		<div class="row justify-content-center my-5">
 			<div class="col-12 col-md-9">
 				<div class="ratio ratio-16x9" id='welcome-video'></div>
 			</div>
 		</div>
-		<div class="row justify-content-center my-5 py-5">
+		<div class="row justify-content-center my-5">
 			<div class="col-12 col-md-9">
 				<h2>Using this Map</h2>
 				<p class="fs-5">Pinch/Scroll to zoom, click/tap and hold to move the map. Click/tap a zone or marker to watch the video tour.</p>
@@ -70,6 +70,21 @@ get_header(); ?>
 		<div class="row justify-content-center my-5 py-5">
 			<div class="col-10 col-xl-12 text-center my-3">
 				<?php get_template_part( 'template-parts/content', 'map' ); ?>
+			</div>
+		</div>
+		<div class="row justify-content-center my-5">
+			<div class="col-10 col-xl-12">
+				<h2 class='text-primary'>Additional Videos</h2>
+			</div>
+			<div class="col-10 col-xl-12">
+				<h3>Above the Third Floor</h3>
+				<lite-vimeo videoid='915707711' videotitle='Above the Third Floor'></lite-vimeo>
+
+			</div>
+			<div class="col-10 col-xl-12 my-5">
+				<h3>Yakoke and Chi Pisa La Chike</h3>
+				<lite-vimeo videoid='915707281' videotitle='Yakoke and Chi Pisa La Chike from Chief Batton'></lite-vimeo>
+
 			</div>
 		</div>
 	</div>
