@@ -15,9 +15,18 @@ class Theme_Init {
 		$this->load_required_files();
 		$this->cno_set_environment();
 		$this->disable_discussion();
+		add_action( 'wp_head', array( $this, 'load_favicons' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_cno_scripts' ) );
 		add_action( 'after_setup_theme', array( $this, 'cno_theme_support' ) );
 		add_action( 'init', array( $this, 'alter_post_types' ) );
+	}
+
+	/**
+	 * Load the favicons
+	 */
+	public function load_favicons() {
+		$href = get_stylesheet_directory_uri() . '/img/favicons';
+		echo "<link rel='apple-touch-icon' sizes='180x180' href='{$href}/apple-touch-icon.png'><link rel='icon' type'='image/png' sizes='192x192' href='{$href}/android-chrome-192x192.png'><link rel='icon' type'='image/png' sizes='512x512' href='{$href}/android-chrome-512x512.png'><link rel='icon' type='image/png' sizes='32x32' href='{$href}/favicon-32x32.png'><link rel='icon' type='image/png' sizes='16x16' href='{$href}/favicon-16x16.png'><link rel='mask-icon' href='{$href}/safari-pinned-tab.svg' color='#000000'>";
 	}
 
 	/** Load required files. */
@@ -99,7 +108,7 @@ class Theme_Init {
 			'typekit',
 			'https://use.typekit.net/jky5sek.css',
 			array(),
-			null // phpcs:ignore
+		null // phpcs:ignore
 		);
 
 		$bootstrap = new Asset_Loader(
