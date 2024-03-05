@@ -15,34 +15,52 @@ import {
 	marker,
 	icon,
 	CRS,
-	imageOverlay,
 	PolylineOptions,
 	CircleOptions,
 	LatLngBoundsLiteral,
 	LatLng,
 	LatLngExpression,
 	LatLngTuple,
+	Marker,
+	Circle,
+	Polygon,
+	LayerGroup,
+	Control,
+	imageOverlay,
+	ImageOverlay,
 } from 'leaflet';
 
 type ElementTypes = 'marker' | 'circle' | 'polygon';
 type ElementOptions = {
 	coords: LatLngExpression[] | LatLngExpression | LatLng[];
 	options?: CircleOptions | PolylineOptions;
-	video: number;
+	video: number | number[];
 };
+
 /**
  * Helps build the Leaflet Map
  */
 export class MapConstructor {
 	protected map: Map;
+	protected mapBounds: LatLngBoundsLiteral = [
+		[ 0, 0 ],
+		[ 300, 400 ],
+	];
 	protected MIN_ZOOM;
-	protected videos: VideoPopups;
+	protected videoPopups: VideoPopups;
 	protected imageBase =
 		'wp-content/themes/virtual-hq-tour/src/js/map/mapImages';
 
+	protected firstFloor: LayerGroup;
+	protected secondFloor: LayerGroup;
+	protected firstFloorImage: ImageOverlay;
+	protected secondFloorImage: ImageOverlay;
+	protected layerControl: Control.Layers;
+
 	/** Constructor */
-	constructor() {
-		this.videos = new VideoPopups();
+	constructor( isMobile = true ) {
+		this.MIN_ZOOM = isMobile ? 0 : 1;
+		this.videoPopups = new VideoPopups();
 		this.initMap();
 	}
 
@@ -50,31 +68,29 @@ export class MapConstructor {
 	 * Build the Map
 	 */
 	protected initMap() {
+		this.firstFloorImage = imageOverlay(
+			`${ this.imageBase }/map--floor-1.webp`,
+			this.mapBounds,
+			{
+				interactive: true,
+				className: 'object-fit-contain',
+			}
+		);
+		this.secondFloorImage = imageOverlay(
+			`${ this.imageBase }/map--floor-2.webp`,
+			this.mapBounds,
+			{
+				interactive: true,
+				className: 'object-fit-contain',
+			}
+		);
 		this.map = map( 'map', {
 			crs: CRS.Simple,
 			minZoom: this.MIN_ZOOM,
+			layers: [ this.firstFloorImage, this.secondFloorImage ],
 		} );
-		const bounds = [
-			[ 0, 0 ],
-			[ 300, 400 ],
-		] as LatLngBoundsLiteral;
 
-		imageOverlay( `${ this.imageBase }/map--floor-1.webp`, bounds, {
-			interactive: true,
-			className: 'object-fit-contain',
-		} ).addTo( this.map );
-		this.map.fitBounds( bounds );
-	}
-
-	/**
-	 * Handles the modal for the video
-	 * @param videoId The id of the video to open
-	 */
-	protected handleModal( videoId: number ) {
-		new VideoModal(
-			this.videos.getVideoTitle( videoId ),
-			this.videos.getLiteVimeo( videoId )
-		);
+		this.map.fitBounds( this.mapBounds );
 	}
 
 	/**
@@ -89,8 +105,12 @@ export class MapConstructor {
 		coords: LatLngTuple[],
 		options: PolylineOptions,
 		video: number
-	) {
-		return this.addElement( 'polygon', { coords, options, video } );
+	): Polygon {
+		return this.addElement( 'polygon', {
+			coords,
+			options,
+			video,
+		} ) as Polygon;
 	}
 
 	/**
@@ -100,8 +120,8 @@ export class MapConstructor {
 	 *
 	 * @link https://leafletjs.com/reference.html#marker
 	 */
-	protected addMarker( coords: LatLngTuple, video: number ) {
-		return this.addElement( 'marker', { coords, video } );
+	protected addMarker( coords: LatLngTuple, video: number ): Marker {
+		return this.addElement( 'marker', { coords, video } ) as Marker;
 	}
 
 	/**
@@ -115,9 +135,13 @@ export class MapConstructor {
 	protected addCircle(
 		coords: LatLngTuple,
 		options: CircleOptions,
-		video: number
-	) {
-		return this.addElement( 'circle', { coords, options, video } );
+		video: number | number[]
+	): Circle {
+		return this.addElement( 'circle', {
+			coords,
+			options,
+			video,
+		} ) as Circle;
 	}
 
 	/**
@@ -125,9 +149,13 @@ export class MapConstructor {
 	 * @param {ElementTypes} type The type of element to add
 	 * @param {ElementOptions} args The arguments to pass to the element
 	 */
-	protected addElement( type: ElementTypes, args: ElementOptions ) {
-		let element;
+	private addElement(
+		type: ElementTypes,
+		args: ElementOptions
+	): Marker | Circle | Polygon {
 		const { coords, options, video } = args;
+		let element: Marker | Circle | Polygon;
+
 		switch ( type ) {
 			case 'marker':
 				element = marker( coords as LatLngExpression, {
@@ -145,12 +173,30 @@ export class MapConstructor {
 				element = polygon( coords as LatLngExpression[], options );
 				break;
 		}
+
 		element
-			.addTo( this.map )
-			.bindPopup( this.videos.getPopup( video ) )
+			.bindPopup( this.videoPopups.getPopup( video ) )
 			.addEventListener( 'click', () => {
 				this.handleModal( video );
 			} );
 		return element;
+	}
+
+	/**
+	 * Handles the modal for the video
+	 * @param videoId The id of the video to open
+	 */
+	private handleModal( video: number | number[] ): void {
+		if ( Array.isArray( video ) ) {
+			video.forEach( ( vid ) => {
+				this.handleModal( vid );
+			} );
+		} else {
+			new VideoModal(
+				video,
+				this.videoPopups.getVideoTitle( video ),
+				this.videoPopups.getLiteVimeo( video, true )
+			);
+		}
 	}
 }

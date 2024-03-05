@@ -1,8 +1,15 @@
 import '@slightlyoff/lite-vimeo';
 
+export type VideoObject = {
+	locationLabel: string;
+	title: string;
+	id: number;
+};
+
 export class VideoPopups {
 	private videos = {
 		1: {
+			locationLabel: 'Main Entrance',
 			title: 'Welcome to CNO Headquarters',
 			id: 915716014,
 		},
@@ -47,18 +54,22 @@ export class VideoPopups {
 			id: 915709508,
 		},
 		10: {
+			locationLabel: 'Second Floor',
 			title: 'Up the Staircase',
 			id: 915708766,
 		},
 		11: {
+			locationLabel: 'Third Floor',
 			title: 'Take a Break on the Third Floor',
 			id: 915708082,
 		},
 		12: {
+			locationLabel: 'Fourth & Fifth Floors',
 			title: 'Above the Third Floor',
 			id: 915707711,
 		},
 		13: {
+			locationLabel: 'Main Entrance',
 			title: 'Yakoke and Chi Pisa La Chike from Chief Batton',
 			id: 915707281,
 		},
@@ -75,38 +86,59 @@ export class VideoPopups {
 	 * Generates the Leaflet Popup
 	 * @param video The videoId
 	 */
-	getPopup( video: number ): string {
+	getPopup( video: number | number[] ): string {
+		if ( Array.isArray( video ) ) {
+			const videosMarkup = video
+				.map( ( vid, index, arr ) => {
+					return `<div class='col-lg-${ 12 / arr.length } mb-2'>
+			<h3 class='fs-6'>Video #${ index + 1 }</h3>
+			<p class='m-0 mb-2'>${ this.videos[ vid ].title }</p>
+			${ this.getModalTrigger( vid ) }
+			</div>`;
+				} )
+				.join( '' );
+			return `<div class='row mb-2'><div class='col-12'><h2 class="fs-5">${
+				this.videos[ video[ 0 ] ].locationLabel
+			}</h2></div>${ videosMarkup }</div>`;
+		}
 		return `<div>
 		<h2 class='fs-5'>${ this.videos[ video ].locationLabel }</h2>
 		<p>${ this.videos[ video ].title }</p>
-		<button class='btn btn-primary' id='modal-trigger'>View Video</button>
+		${ this.getModalTrigger( video ) }
 		</div>`;
+	}
+
+	private getModalTrigger( video: number ): string {
+		return `<button class='btn btn-primary modal-trigger' id='modal-trigger-${ video }'>Watch Video</button>`;
 	}
 
 	/**
 	 * Returns the lite-vimeo web component
 	 * @param {number} video The video to return
+	 * @param {boolean} autoload Whether to autoload the video
 	 * @returns {title:string;id:string}
 	 */
-	getLiteVimeo( video: number ): string {
-		return `<lite-vimeo videotitle="${ this.videos[ video ].title }" videoid="${ this.videos[ video ].id }"></lite-vimeo>`;
+	getLiteVimeo( video: number, autoload: boolean = false ): string {
+		return `<lite-vimeo videotitle="${
+			this.videos[ video ].title
+		}" videoid="${ this.videos[ video ].id }" ${
+			autoload ? 'autoload' : ''
+		}></lite-vimeo>`;
 	}
 
 	/**
 	 * Returns a video object
 	 * @param {number} video The video to return
 	 */
-	getVideoObject( video: number ): { title: string; id: string } {
+	getVideoObject( video: number ): VideoObject {
 		return this.videos[ video ];
 	}
 
 	/**
-	 * Returns the video's locationLabel or the video title
+	 * Returns the video's title
 	 * @param {number} video The video to return
 	 */
 	getVideoTitle( video: number ): string {
-		return (
-			this.videos[ video ]?.locationLabel || this.videos[ video ].title
-		);
+		return this.videos[ video ].title;
 	}
 }
