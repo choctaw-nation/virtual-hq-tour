@@ -4,3 +4,18 @@
 .leaflet-popup-content {
 	font-size: 1.6rem;
 }
+
+.leaflet-control-layers-base,
+.leaflet-control-layers-overlays {
+	font-size: 1.6rem;
+
+	& > label > span {
+		width: 100%;
+		display: block;
+		text-align: start;
+
+		input {
+			margin-right: 8px;
+		}
+	}
+}
