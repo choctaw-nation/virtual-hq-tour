@@ -7,31 +7,13 @@
  */
 
 ?>
-
 <footer class="footer bg-primary py-5 container-fluid gx-5 text-white text-center d-flex flex-column align-items-center">
-	<div class="row">
-		<?php
-		if ( has_nav_menu( 'footer_menu' ) ) {
-			wp_nav_menu(
-				array(
-					'theme_location'  => 'footer_menu',
-					'menu_class'      => 'footer-nav list-unstyled navbar-nav flex-row',
-					'container'       => 'nav',
-					'container_class' => 'navbar',
-				)
-			);
-		}
-		?>
-	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-4">
-				<a href="<?php echo esc_url( site_url() ); ?>" class="logo">
-					<figure class="logo-img d-inline-block">
-						<span aria-label="to Home Page">
-							<?php echo bloginfo( 'name' ); ?>
-						</span>
-					</figure>
+				<a class="navbar-brand my-2 align-items-md-center" href="<?php echo esc_url( site_url() ); ?>" class="logo" aria-label="to Home Page">
+					<img src="<?php echo get_template_directory_uri() . '/img/the-great-seal-min.svg'; ?>" alt="The Great Seal of the Choctaw Nation" class='d-inline-block logo' />
+					<?php echo bloginfo( 'title' ); ?>
 				</a>
 				<div class="row">
 					<div class="social-icons">
