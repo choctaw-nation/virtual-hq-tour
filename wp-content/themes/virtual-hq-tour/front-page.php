@@ -28,8 +28,8 @@ get_header(); ?>
 		</div>
 		<div class="row justify-content-center my-5">
 			<div class="col-12 col-md-9">
-				<h2>Using this Map</h2>
-				<p class="fs-5">Pinch/Scroll to zoom, click/tap and hold to move the map. Click/tap a zone or marker to watch the video tour.</p>
+				<h2 class='fs-3'>Using this Map</h2>
+				<p>Pinch/Scroll to zoom, click/tap and hold to move the map. Click/tap a zone or marker to watch the video tour.</p>
 				<?php
 				$sections = array(
 					array(
@@ -57,53 +57,44 @@ get_header(); ?>
 						'color' => 'Orange Zone',
 					),
 				);
+				echo '<ul>';
+				foreach ( $sections as $section ) {
+					echo "<li>{$section['label']}: {$section['color']}</li>";
+				}
+				echo '</ul>';
 				?>
-				<ul class="fs-5">
-					<?php
-					foreach ( $sections as $section ) {
-						echo "<li>{$section['label']}: {$section['color']}</li>";
-					}
-					?>
-				</ul>
 			</div>
 		</div>
-		<div class="row justify-content-center my-5 py-5">
-			<div class="col-10 col-xl-12 text-center my-3">
+		<div class="row justify-content-center my-5">
+			<div class="col-12 col-md-9 text-center my-3">
 				<?php get_template_part( 'template-parts/content', 'map' ); ?>
 			</div>
 		</div>
 		<div class="row justify-content-center my-5">
-			<div class="col-10 col-xl-12">
-				<h2 class='text-primary'>Additional Videos</h2>
+			<div class="col-12 col-md-9">
+				<h2 class='text-primary fs-3'>Additional Videos</h2>
 			</div>
-			<div class="col-10 col-xl-12">
-				<h3>Above the Third Floor</h3>
-				<lite-vimeo videoid='915707711' videotitle='Above the Third Floor'></lite-vimeo>
-
-			</div>
-			<div class="col-10 col-xl-12 my-5">
-				<h3>Yakoke and Chi Pisa La Chike</h3>
-				<lite-vimeo videoid='915707281' videotitle='Yakoke and Chi Pisa La Chike from Chief Batton'></lite-vimeo>
-
-			</div>
+			<?php
+			$additional_videos = array(
+				array(
+					'title' => 'Above the Third Floor',
+					'id'    => '915707711',
+				),
+				array(
+					'title' => 'Yakoke and Chi Pisa La Chike',
+					'id'    => '915707281',
+				),
+			);
+			foreach ( $additional_videos as $video ) {
+				echo "<div class='col-12 col-md-9 mb-4'>
+					<h3 class='fs-4'>{$video['title']}</h3>
+					<lite-vimeo videoid='{$video['id']}' videotitle='{$video['title']}'></lite-vimeo>
+				</div>";
+			}
+			?>
 		</div>
 	</div>
 </main>
-<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h1 class="modal-title fs-5" id="videoModalLabel"></h1>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<div class="ratio ratio-16x9" id='modal-video'></div>
-			</div>
-			<div class="modal-footer">
-				<div class="btn btn-primary" data-bs-dismiss="modal">Close Modal</div>
-			</div>
-		</div>
-	</div>
-</div>
 <?php
+get_template_part( 'template-parts/content', 'video-modal' );
 get_footer();
