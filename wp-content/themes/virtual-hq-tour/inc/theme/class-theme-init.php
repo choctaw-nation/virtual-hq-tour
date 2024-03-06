@@ -35,16 +35,6 @@ class Theme_Init {
 		require_once $base_path . '/component-classes/class-cno-content-sections.php';
 		require_once $base_path . '/theme/theme-functions.php';
 
-		$acf_classes = array(
-			'generator',
-			'image',
-			'hero',
-		);
-		foreach ( $acf_classes as $acf_class ) {
-			require_once $base_path . '/acf/acf-classes/class-' . $acf_class . '.php';
-		}
-		require_once $base_path . '/acf/acf-fields/initial-acf-fields.php';
-
 		$asset_loaders = array( 'enum-enqueue-type', 'class-asset-loader' );
 		foreach ( $asset_loaders as $asset_loader ) {
 			require_once $base_path . '/theme/asset-loader/' . $asset_loader . '.php';
@@ -121,9 +111,6 @@ class Theme_Init {
 			)
 		);
 
-		// $fontawesome = new Asset_Loader( 'fontawesome', Enqueue_Type::script, 'vendors' );
-		// $fontawesome = new Asset_Loader( 'fontawesome', Enqueue_Type::style, 'vendors' );
-
 		$global_scripts = new Asset_Loader(
 			'global',
 			Enqueue_Type::both,
@@ -142,6 +129,8 @@ class Theme_Init {
 			array( 'global' ),
 			wp_get_theme()->get( 'Version' )
 		);
+
+		new Asset_Loader( 'lite-vimeo', Enqueue_Type::script, 'vendors', array( 'global' ) );
 
 		$this->remove_wordpress_styles(
 			array(

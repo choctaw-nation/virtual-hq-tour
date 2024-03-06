@@ -104,33 +104,6 @@ get_header(); ?>
 				</div>
 			</div>
 		</section>
-		<section class="row justify-content-center my-5" id='additional-videos'>
-			<div class="col-12 col-md-9">
-				<h2 class=' text-primary fs-3'>Additional Videos</h2>
-			</div>
-			<?php
-			$additional_videos = array(
-				array(
-					'title' => 'Take a Break on the Third Floor',
-					'id'    => '915708082',
-				),
-				array(
-					'title' => 'Above the Third Floor',
-					'id'    => '915707711',
-				),
-				array(
-					'title' => 'Yakoke and Chi Pisa La Chike',
-					'id'    => '915707281',
-				),
-			);
-			foreach ( $additional_videos as $video ) {
-				echo "<div class='col-12 col-md-9 mb-4'>
-					<h3 class='fs-4'>{$video['title']}</h3>
-					<lite-vimeo videoid='{$video['id']}' videotitle='{$video['title']}'></lite-vimeo>
-				</div>";
-			}
-			?>
-		</section>
 	</div>
 </main>
 <?php

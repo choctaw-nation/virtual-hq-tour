@@ -4,6 +4,11 @@
 	--size: 12rem;
 	max-width: var(--size);
 	max-height: var(--size);
+
+	--circle: circle(50% at 50% 50%);
+	float: left;
+	shape-outside: var(--circle);
+	clip-path: var(--circle);
 }
 
 %dropdown-menu-visible {

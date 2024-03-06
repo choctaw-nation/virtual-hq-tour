@@ -10,7 +10,7 @@ import '../../styles/vendors/bootstrap.scss';
 // import Collapse from 'bootstrap/js/dist/collapse';
 // import Dropdown from 'bootstrap/js/dist/dropdown';
 import Modal from 'bootstrap/js/dist/modal';
-// import Offcanvas from 'bootstrap/js/dist/offcanvas';
+import Offcanvas from 'bootstrap/js/dist/offcanvas';
 // import Popover from 'bootstrap/js/dist/popover';
 // import ScrollSpy from 'bootstrap/js/dist/scrollspy';
 // import Tab from 'bootstrap/js/dist/tab';

@@ -19,14 +19,20 @@
 
 <body <?php body_class( 'w-100 overflow-x-hidden' ); ?>>
 	<?php wp_body_open(); ?>
-	<header class="d-flex sticky-top text-bg-primary" id="site-header">
+	<header class="d-flex text-bg-primary" id="site-header">
 		<div class="container">
 			<nav class="navbar navbar-expand-lg py-0">
-				<a class="navbar-brand my-2 align-items-md-center" href="<?php echo esc_url( site_url() ); ?>" class="logo" aria-label="to Home Page">
+				<a class="navbar-brand d-flex align-items-center flex-grow-0 my-2 align-items-md-center" href="<?php echo esc_url( site_url() ); ?>" class="logo" aria-label="to Home Page">
 					<img src="<?php echo get_template_directory_uri() . '/img/the-great-seal-min.svg'; ?>" alt="The Great Seal of the Choctaw Nation" class='d-inline-block logo' />
-					<?php echo bloginfo( 'title' ); ?>
+					<div class="site-title ms-2">
+						<span class='site-title--line-1'>
+							Choctaw Nation
+						</span>
+						<br class='d-block d-lg-none' />
+						<span class="site-title--line-2">Virtual Headquarters<br class='d-block d-sm-none' /> Tour</span>
+					</div>
 				</a>
-				<?php // get_template_part( 'template-parts/header/content', 'offcanvas' ); ?>
+				<?php get_template_part( 'template-parts/header/content', 'offcanvas' ); ?>
 			</nav>
 		</div>
 	</header>
