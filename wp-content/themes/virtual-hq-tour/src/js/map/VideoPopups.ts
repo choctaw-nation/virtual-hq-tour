@@ -1,5 +1,3 @@
-import '@slightlyoff/lite-vimeo';
-
 export type VideoObject = {
 	locationLabel: string;
 	title: string;
