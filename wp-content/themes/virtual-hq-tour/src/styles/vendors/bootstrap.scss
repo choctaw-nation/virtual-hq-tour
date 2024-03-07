@@ -10,7 +10,7 @@
 */
 
 $primary: v.$color-purple;
-$secondary: #b6a0c6;
+// $secondary: #b6a0c6;
 
 // ================================================
 
@@ -28,13 +28,12 @@ $font-size-base: 1.6rem; // Sets the base font size to 16px
 
 // LINKS
 // $link-decoration: none;
-// $link-color: $primary;
-// $link-hover-color: rgba(v.$color-purple--light, 0.8);
+$link-color: $primary;
+$link-hover-color: v.$color-purple--light;
 
 // HEADINGS
 $headings-font-family: v.$font-headings;
 $headings-font-weight: 600;
-// $headings-color: v.$color-purple--light;
 
 $h1-font-size: $font-size-base * 2.986;
 $h2-font-size: $font-size-base * 2.488;
@@ -81,13 +80,13 @@ $spacer: 1.6rem; // 16px
 * Navbar
 */
 
-$navbar-light-active-color: $secondary;
-$navbar-light-hover-color: $secondary;
+$navbar-light-active-color: v.$color-purple--light;
+$navbar-light-hover-color: v.$color-purple--light;
 $navbar-light-color: white;
 $navbar-light-icon-color: white;
 $navbar-light-toggler-border-color: white;
 $navbar-light-brand-color: white;
-$navbar-light-brand-hover-color: $secondary;
+$navbar-light-brand-hover-color: v.$color-purple--light;
 
 // ================================================
 

@@ -6,11 +6,6 @@ export type VideoObject = {
 
 export class VideoPopups {
 	private videos = {
-		1: {
-			locationLabel: 'Main Entrance',
-			title: 'Welcome to CNO Headquarters',
-			id: 915716014,
-		},
 		2: {
 			locationLabel: "Chief's Office",
 			title: 'A Look Inside Chief’s Office',
@@ -72,13 +67,6 @@ export class VideoPopups {
 			id: 915707281,
 		},
 	};
-
-	constructor() {
-		const welcome = document.getElementById( 'welcome-video' );
-		if ( welcome ) {
-			welcome.innerHTML = this.getLiteVimeo( 1 );
-		}
-	}
 
 	/**
 	 * Generates the Leaflet Popup
