@@ -79,7 +79,7 @@ export default class Map extends MapConstructor {
 				color: 'green',
 				radius: 20,
 			},
-			[ 3, 4 ]
+			4
 		);
 
 		const chiefsOffice = this.addMarker(
@@ -87,8 +87,13 @@ export default class Map extends MapConstructor {
 			2
 		);
 
-		const hallOfChiefs = this.addMarker(
-			[ this.topLeft[ 0 ] - 60, this.topLeft[ 1 ] + 143 ],
+		const hallOfChiefs = this.addPolygon(
+			[
+				[ this.topLeft[ 0 ], this.topLeft[ 1 ] + 143 ],
+				[ this.topLeft[ 0 ], this.topLeft[ 1 ] + 150 ],
+				[ this.topLeft[ 0 ] - 60, this.topLeft[ 1 ] + 143 ],
+			],
+			{ color: 'blue' },
 			9
 		);
 
@@ -138,9 +143,28 @@ export default class Map extends MapConstructor {
 			{ color: 'gold' },
 			6
 		);
+
+		const frontEntrance = this.addPolygon(
+			[
+				[ this.topLeft[ 0 ] - 55, this.topLeft[ 1 ] - 38 ],
+				[ this.topLeft[ 0 ] - 55, 0 ],
+				[ 0, 0 ],
+				[ 0, 400 ],
+				[ 60, 400 ],
+				[ 60, this.topLeft[ 1 ] + 140 ],
+				[ 65, this.topLeft[ 1 ] + 100 ],
+				[ this.topLeft[ 0 ] - 140, this.topLeft[ 1 ] + 80 ], // BR
+			],
+			{
+				color: 'purple',
+			},
+			3
+		);
+
 		return {
 			eastCourtyard,
 			westCourtyard,
+			frontEntrance,
 		};
 	}
 
