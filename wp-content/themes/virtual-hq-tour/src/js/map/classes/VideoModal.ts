@@ -10,21 +10,12 @@ export class VideoModal extends BootstrapModal {
 	 * @param modalTitleContent The Modal Title
 	 * @param modalBodyContent The lite-vimeo web component(s)
 	 */
-	constructor(
-		videoId: number,
-		modalTitleContent: string,
-		modalBodyContent: string
-	) {
+	constructor( modalTitleContent: string, modalBodyContent: string ) {
 		const modalEl = document.getElementById( 'videoModal' )!;
 		super( modalEl );
 		this.modalTitle = document.getElementById( 'videoModalLabel' )!;
 		this.modalBody = document.getElementById( 'modal-video' )!;
-		const trigger = document.getElementById(
-			`modal-trigger-${ videoId }`
-		)!;
-		trigger.addEventListener( 'click', () => {
-			this.initModal( modalTitleContent, modalBodyContent );
-		} );
+		this.initModal( modalTitleContent, modalBodyContent );
 	}
 
 	/**

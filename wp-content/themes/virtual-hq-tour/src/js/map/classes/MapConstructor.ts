@@ -173,11 +173,9 @@ export class MapConstructor {
 				break;
 		}
 
-		element
-			.bindPopup( this.videoPopups.getPopup( video ) )
-			.addEventListener( 'click', () => {
-				this.handleModal( video );
-			} );
+		element.addEventListener( 'click', () => {
+			this.handleModal( video );
+		} );
 		return element;
 	}
 
@@ -192,7 +190,6 @@ export class MapConstructor {
 			} );
 		} else {
 			new VideoModal(
-				video,
 				this.videoPopups.getVideoTitle( video ),
 				this.videoPopups.getLiteVimeo( video, false )
 			);

@@ -18,6 +18,7 @@ export default class Map extends MapConstructor {
 		this.initLayerControl();
 		this.map.addEventListener( 'baselayerchange', ( ev ) => {
 			const { name } = ev;
+			console.log( name );
 			switch ( name ) {
 				case 'First Floor':
 					this.secondFloor.remove();
@@ -35,12 +36,20 @@ export default class Map extends MapConstructor {
 	 * Inits the Layer Control of the Map
 	 */
 	private initLayerControl() {
-		const secondFloorPlaces = Object.values( this.initSecondFloorZones() );
-		this.secondFloor = layerGroup( secondFloorPlaces ).addTo( this.map );
+		this.secondFloor = layerGroup( [
+			this.secondFloorImage,
+			...Object.values( this.initSecondFloorZones() ),
+		] );
 
 		this.outdoorZones = layerGroup(
 			Object.values( this.initOutdoorZones() )
 		).addTo( this.map );
+
+		this.firstFloor = layerGroup( [
+			this.firstFloorImage,
+			...Object.values( this.initFirstFloorZones() ),
+		] ).addTo( this.map );
+
 		this.layerControl = control
 			.layers(
 				{
@@ -52,9 +61,6 @@ export default class Map extends MapConstructor {
 				}
 			)
 			.addTo( this.map );
-
-		const firstFloorPlaces = Object.values( this.initFirstFloorZones() );
-		this.firstFloor = layerGroup( firstFloorPlaces ).addTo( this.map );
 	}
 
 	/**
