@@ -27,8 +27,8 @@ $font-size-root: 62.5%; // Assuming browser is set to 16px, this will make 1rem 
 $font-size-base: 1.6rem; // Sets the base font size to 16px
 
 // LINKS
-$link-decoration: none;
-// $link-color: v.$color-purple--light;
+// $link-decoration: none;
+// $link-color: $primary;
 // $link-hover-color: rgba(v.$color-purple--light, 0.8);
 
 // HEADINGS
@@ -43,9 +43,13 @@ $h4-font-size: $font-size-base * 1.728;
 $h5-font-size: $font-size-base * 1.44;
 $h6-font-size: $font-size-base * 1.2;
 
-$dropdown-font-size: 2.16rem;
-
 $body-color: v.$color-black;
+
+// ================================================
+/**
+* Nav Links
+*/
+$nav-link-font-size: 2rem;
 
 // ================================================
 
