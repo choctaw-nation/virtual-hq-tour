@@ -48,8 +48,7 @@ export class MapConstructor {
 	];
 	protected MIN_ZOOM;
 	protected videoPopups: VideoPopups;
-	protected imageBase =
-		'wp-content/themes/virtual-hq-tour/src/js/map/mapImages';
+	protected imageBase = 'wp-content/themes/virtual-hq-tour/src/js/map/assets';
 
 	protected firstFloor: LayerGroup;
 	protected secondFloor: LayerGroup;

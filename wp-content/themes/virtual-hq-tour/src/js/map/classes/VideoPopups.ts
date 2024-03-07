@@ -12,7 +12,7 @@ export class VideoPopups {
 			id: 915715080,
 		},
 		3: {
-			locationLabel: 'Main Lobby',
+			locationLabel: 'Front Entrance',
 			title: 'Honoring Choctaw Culture through Design',
 			id: 915714186,
 		},
