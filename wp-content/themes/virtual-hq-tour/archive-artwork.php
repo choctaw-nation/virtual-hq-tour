@@ -6,6 +6,10 @@
  * @package ChoctawNation
  */
 
+use ChoctawNation\Asset_Loader;
+use ChoctawNation\Enqueue_Type;
+
+new Asset_Loader( 'cnoMasonry', Enqueue_Type::script, 'modules' );
 $all_artwork = new WP_Query(
 	array(
 		'post_type'      => 'artwork',
@@ -21,8 +25,8 @@ if ( ! $all_artwork->have_posts() ) :
 	<?php __( 'Sorry, no artwork was found.', 'cno' ); ?>
 </div>
 <?php else : ?>
-<main class="container">
-	<section id="artwork" class="row row-cols-1 row-cols-md-4 row-gap-4 justify-content-evenly my-5">
+<main class="container py-4">
+	<section id="artwork" class='my-5'>
 		<?php
 		while ( $all_artwork->have_posts() ) {
 			$all_artwork->the_post();

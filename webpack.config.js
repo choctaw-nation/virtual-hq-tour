@@ -18,6 +18,7 @@ const appNames = [ 'map' ];
  * Array of strings modeled after scss names (e.g. 'we-are-choctaw')
  */
 const styleSheets = []; // for scss only
+const modules = [ 'cno-masonry' ];
 
 module.exports = {
 	...defaultConfig,
@@ -30,6 +31,7 @@ module.exports = {
 				'vendors/lite-vimeo': `.${ THEME_DIR }/src/js/vendors/lite-vimeo.js`,
 				...addEntries( appNames, 'pages' ),
 				...addEntries( styleSheets, 'styles' ),
+				...addEntries( modules, 'modules' ),
 			};
 			return entries;
 		},
@@ -64,6 +66,10 @@ function addEntries( array, type ) {
 			entries[
 				`pages/${ assetOutput }`
 			] = `.${ THEME_DIR }/src/js/${ asset }/index.ts`;
+		} else if ( type === 'modules' ) {
+			entries[
+				`modules/${ assetOutput }`
+			] = `.${ THEME_DIR }/src/js/modules/${ asset }.ts`;
 		} else {
 			throw new Error(
 				`Invalid type! Expected "styles" or "pages", received "${ type }"`

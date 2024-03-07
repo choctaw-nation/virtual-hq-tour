@@ -50,6 +50,7 @@ auth.json
 /wp-content/.htaccess
 /wp-content/advanced-cache.php
 /wp-content/autoptimize_404_handler.php
+/wp-content/db.php
 
 
 

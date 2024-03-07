@@ -35,11 +35,15 @@ get_header();
 		<?php __( 'Sorry, no artwork was found.', 'cno' ); ?>
 	</div>
 	<?php else : ?>
-	<section id="artwork" class="row row-cols-1 row-cols-md-3 row-gap-4 my-5">
+	<section id="artwork" class="my-5">
 		<?php
 		while ( $artwork->have_posts() ) {
 			$artwork->the_post();
-			get_template_part( 'template-parts/content', 'artwork-preview', array( 'with_artist' => false ) );
+			get_template_part(
+				'template-parts/content',
+				'artwork-preview',
+				array( 'with_artist' => false )
+			);
 		}
 		?>
 	</section>
