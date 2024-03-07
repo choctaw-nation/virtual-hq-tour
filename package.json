@@ -17,11 +17,11 @@
 	"dependencies": {
 		"@slightlyoff/lite-vimeo": "^0.1.2",
 		"bootstrap": "^5.3.3",
-		"esri-leaflet-vector": "^4.2.3",
 		"leaflet": "^1.9.4",
 		"macy": "^2.5.1"
 	},
 	"devDependencies": {
+		"@types/bootstrap": "^5.2.10",
 		"@types/leaflet": "^1.9.8",
 		"@wordpress/scripts": "^27.4.0",
 		"eslint-config-react-app": "^7.0.1"

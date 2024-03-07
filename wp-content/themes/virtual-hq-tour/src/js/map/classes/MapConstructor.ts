@@ -195,7 +195,7 @@ export class MapConstructor {
 			new VideoModal(
 				video,
 				this.videoPopups.getVideoTitle( video ),
-				this.videoPopups.getLiteVimeo( video, true )
+				this.videoPopups.getLiteVimeo( video, false )
 			);
 		}
 	}

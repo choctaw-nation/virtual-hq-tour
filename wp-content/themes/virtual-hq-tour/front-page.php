@@ -15,15 +15,6 @@ $loader = new Asset_Loader( 'map', Enqueue_Type::both, 'pages' );
 get_header(); ?>
 <main class="site-content">
 	<div class="container">
-		<section class="row justify-content-center my-5 py-5" id='welcome'>
-			<div class="col-9 text-center">
-				<h1 class='fs-2 text-primary'>Welcome to the Choctaw Nation Virtual HQ Tour</h1>
-				<p class='fs-5'>Take a virtual tour of the Choctaw Nation Headquarters in Durant, Oklahoma. Explore the campus and learn about the history of the Choctaw Nation.</p>
-			</div>
-			<div class="col-12 col-md-9 mt-4">
-				<div class="ratio ratio-16x9" id='welcome-video'></div>
-			</div>
-		</section>
 		<section class="row justify-content-center" id='the-map'>
 			<div class="col-12 col-md-9">
 				<h2 class='fs-3'>Using this Map</h2>
@@ -107,5 +98,6 @@ get_header(); ?>
 	</div>
 </main>
 <?php
+get_template_part( 'template-parts/content', 'welcome-modal' );
 get_template_part( 'template-parts/content', 'video-modal' );
 get_footer();
