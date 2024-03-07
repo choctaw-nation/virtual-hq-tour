@@ -9,22 +9,20 @@
 $thumbnail_id = get_post_thumbnail_id();
 $with_artist  = isset( $args['with_artist'] ) ? $args['with_artist'] : true;
 ?>
-<div class="col">
-	<figure class='ratio ratio-4x3'>
-		<?php
+<figure class='d-inline-block'>
+	<?php
 		echo wp_get_attachment_image(
 			$thumbnail_id,
 			'full',
 			false,
 			array(
-				'class'   => 'object-fit-cover',
+				'class'   => 'w-100 h-auto',
 				'loading' => 'lazy',
 			)
 		);
 		?>
-	</figure>
 	<?php if ( $with_artist ) : ?>
-	<figcaption>
+	<figcaption class='mt-2'>
 		<?php
 		$artists      = array();
 		$artist_terms = get_the_terms( $post->ID, 'artist' );
@@ -39,4 +37,4 @@ $with_artist  = isset( $args['with_artist'] ) ? $args['with_artist'] : true;
 		<p>Artwork by: <?php echo $artists; ?></p>
 	</figcaption>
 	<?php endif; ?>
-</div>
+</figure>
