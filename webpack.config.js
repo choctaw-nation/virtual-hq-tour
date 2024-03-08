@@ -18,7 +18,7 @@ const appNames = [ 'map' ];
  * Array of strings modeled after scss names (e.g. 'we-are-choctaw')
  */
 const styleSheets = []; // for scss only
-const modules = [ 'cno-masonry' ];
+const modules = [ 'cno-masonry', 'lightbox' ];
 
 module.exports = {
 	...defaultConfig,

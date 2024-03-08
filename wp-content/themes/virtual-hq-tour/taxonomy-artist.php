@@ -5,6 +5,11 @@
  * @package ChoctawNation
  */
 
+use ChoctawNation\Asset_Loader;
+use ChoctawNation\Enqueue_Type;
+
+new Asset_Loader( 'cnoMasonry', Enqueue_Type::script, 'modules' );
+new Asset_Loader( 'lightbox', Enqueue_Type::script, 'modules' );
 get_header();
 ?>
 

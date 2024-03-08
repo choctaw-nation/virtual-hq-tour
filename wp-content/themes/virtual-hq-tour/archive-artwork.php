@@ -10,6 +10,7 @@ use ChoctawNation\Asset_Loader;
 use ChoctawNation\Enqueue_Type;
 
 new Asset_Loader( 'cnoMasonry', Enqueue_Type::script, 'modules' );
+new Asset_Loader( 'lightbox', Enqueue_Type::script, 'modules' );
 $all_artwork = new WP_Query(
 	array(
 		'post_type'      => 'artwork',
@@ -35,7 +36,7 @@ if ( ! $all_artwork->have_posts() ) :
 		?>
 	</section>
 </main>
-<?php
+	<?php
 endif;
 wp_reset_postdata();
 get_footer();
