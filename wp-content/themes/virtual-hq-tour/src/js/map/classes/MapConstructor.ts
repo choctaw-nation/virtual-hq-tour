@@ -178,16 +178,17 @@ export class MapConstructor {
 				break;
 		}
 
-		element.bindPopup(
-			this.videoPopups.getPopup( video, this.isMobile, this.handleModal )
-		);
+		element.bindPopup( this.videoPopups.getPopup( video ) );
 		element.on( {
 			click: () => {
 				this.handleModal( video );
 			},
 			mouseover: ( ev ) => {
-				if ( this.isMobile ) return;
-				ev.target.openPopup();
+				if ( this.isMobile ) {
+					return;
+				} else {
+					ev.target.openPopup();
+				}
 			},
 		} );
 		return element;
