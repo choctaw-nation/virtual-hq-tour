@@ -24,8 +24,6 @@ import {
 	Marker,
 	Circle,
 	Polygon,
-	LayerGroup,
-	Control,
 	imageOverlay,
 	ImageOverlay,
 } from 'leaflet';
@@ -51,11 +49,8 @@ export class MapConstructor {
 	protected videoPopups: VideoPopups;
 	protected imageBase = 'wp-content/themes/virtual-hq-tour/src/js/map/assets';
 
-	protected firstFloor: LayerGroup;
-	protected secondFloor: LayerGroup;
 	protected firstFloorImage: ImageOverlay;
 	protected secondFloorImage: ImageOverlay;
-	protected layerControl: Control.Layers;
 
 	/** Constructor */
 	constructor( isMobile = true ) {
@@ -89,6 +84,7 @@ export class MapConstructor {
 			crs: CRS.Simple,
 			minZoom: this.MIN_ZOOM,
 			layers: [ this.firstFloorImage ],
+			attributionControl: false,
 		} );
 
 		this.map.fitBounds( this.mapBounds );

@@ -126,7 +126,7 @@ export default class Legend {
 		isFirstItem: boolean
 	): HTMLElement {
 		const header = document.createElement( 'h2' );
-		header.classList.add( 'accordion-header', 'fs-5' );
+		header.classList.add( 'accordion-header' );
 
 		const button = document.createElement( 'button' );
 		button.classList.add( 'accordion-button' );
@@ -179,7 +179,7 @@ export default class Legend {
 			itemColor.style.backgroundColor = color;
 			legendItem.appendChild( itemColor );
 			const itemText = document.createElement( 'p' );
-			itemText.classList.add( 'legend__text' );
+			itemText.classList.add( 'legend__text', 'small' );
 			itemText.textContent = text;
 			legendItem.appendChild( itemText );
 			body.appendChild( legendItem );
@@ -187,16 +187,6 @@ export default class Legend {
 
 		bodyContainer.appendChild( body );
 		return bodyContainer;
-	}
-
-	/**
-	 * Adds a dismiss button to the accordion
-	 */
-	private addDismissButton() {
-		const dismissButton = document.createElement( 'button' );
-		dismissButton.classList.add( 'btn', 'btn-secondary', 'fs-6' );
-		dismissButton.textContent = 'Close';
-		this.accordion.appendChild( dismissButton );
 	}
 
 	/**

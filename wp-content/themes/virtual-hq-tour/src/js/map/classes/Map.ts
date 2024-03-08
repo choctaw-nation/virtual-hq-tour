@@ -4,7 +4,6 @@ import {
 	Circle,
 	Control,
 	LatLngTuple,
-	LayerGroup,
 	Marker,
 	Polygon,
 	control,
@@ -14,8 +13,6 @@ import { MapConstructor } from './MapConstructor';
 import Legend from './Legend';
 
 export default class Map extends MapConstructor {
-	private outdoorZones: LayerGroup;
-
 	/**
 	 * The Top Left Corner of the First Floor West Wing
 	 */
@@ -116,50 +113,32 @@ export default class Map extends MapConstructor {
 		super( isMobile );
 		this.topLeft = [ 225, 68 ] as LatLngTuple;
 		this.initLayerControl();
-		this.map.addEventListener( 'baselayerchange', ( ev ) => {
-			const { name } = ev;
-			switch ( name ) {
-				case 'First Floor':
-					this.secondFloor.remove();
-					this.firstFloor.addTo( this.map );
-					break;
-				case 'Second Floor':
-					this.firstFloor.remove();
-					this.secondFloor.addTo( this.map );
-					break;
-			}
-		} );
 	}
 
 	/**
 	 * Inits the Layer Control of the Map
 	 */
 	private initLayerControl() {
-		this.secondFloor = layerGroup( [
-			this.secondFloorImage,
-			...this.initSecondFloorZones(),
-		] );
-
-		this.outdoorZones = layerGroup( this.initOutdoorZones() ).addTo(
-			this.map
-		);
-
-		this.firstFloor = layerGroup( [
+		const firstFloor = layerGroup( [
 			this.firstFloorImage,
 			...this.initFirstFloorZones(),
 		] ).addTo( this.map );
 
-		this.layerControl = control
-			.layers(
-				{
-					'Second Floor': this.secondFloorImage,
-					'First Floor': this.firstFloorImage,
-				},
-				{
-					'Outdoor Zones': this.outdoorZones,
-				}
-			)
-			.addTo( this.map );
+		const secondFloor = layerGroup( [
+			this.secondFloorImage,
+			...this.initSecondFloorZones(),
+		] );
+
+		const outdoorZones = layerGroup( this.initOutdoorZones() ).addTo(
+			this.map
+		);
+
+		const baseLayers = {
+			'Second Floor': secondFloor,
+			'First Floor': firstFloor,
+		};
+		const overlayLayers = { 'Outdoor Zones': outdoorZones };
+		control.layers( baseLayers, overlayLayers ).addTo( this.map );
 
 		this.addLegend();
 	}
@@ -353,7 +332,7 @@ export default class Map extends MapConstructor {
 			div.classList.add( ...legendClasses );
 			div.id = 'legend';
 			const legendToggle = document.createElement( 'button' );
-			legendToggle.classList.add( 'fs-6', 'btn', 'btn-secondary' );
+			legendToggle.classList.add( 'btn', 'btn-secondary' );
 			legendToggle.textContent = 'Show Legend';
 			legendToggle.addEventListener( 'click', () => {
 				const legend = new Legend( this.locations, legendToggle );
