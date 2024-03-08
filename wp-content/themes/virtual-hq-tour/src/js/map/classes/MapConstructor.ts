@@ -41,6 +41,7 @@ export type ElementOptions = {
  * Helps build the Leaflet Map
  */
 export class MapConstructor {
+	protected isMobile: boolean;
 	protected map: Map;
 	protected mapBounds: LatLngBoundsLiteral = [
 		[ 0, 0 ],
@@ -58,6 +59,7 @@ export class MapConstructor {
 
 	/** Constructor */
 	constructor( isMobile = true ) {
+		this.isMobile = isMobile;
 		this.MIN_ZOOM = isMobile ? 0 : 1;
 		this.videoPopups = new VideoPopups();
 		this.initMap();
@@ -176,9 +178,13 @@ export class MapConstructor {
 				break;
 		}
 
-		element.bindPopup( this.videoPopups.getPopup( video ) );
+		element.bindPopup(
+			this.videoPopups.getPopup( video, this.isMobile, this.handleModal )
+		);
 		element.on( {
-			click: () => this.handleModal( video ),
+			click: () => {
+				this.handleModal( video );
+			},
 			mouseover: ( ev ) => {
 				ev.target.openPopup();
 			},

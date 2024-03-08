@@ -362,20 +362,6 @@ export default class Map extends MapConstructor {
 			div.appendChild( legendToggle );
 			return div;
 		};
-		// legendControl.onRemove = ( map ) => {
-		// 	const div = document.createElement( 'div' );
-		// 	div.classList.add( ...legendClasses );
-		// 	div.id = 'legend';
-		// 	const legendToggle = document.createElement( 'button' );
-		// 	legendToggle.classList.add( 'fs-6', 'btn', 'btn-secondary' );
-		// 	legendToggle.textContent = 'Show Legend';
-		// 	legendToggle.addEventListener( 'click', () => {
-		// 		const legend = new Legend( this.locations, legendToggle );
-		// 		div.innerHTML = legend.getLegendMarkup();
-		// 	} );
-		// 	div.appendChild( legendToggle );
-		// 	return div;
-		// };
 		legendControl.addTo( this.map );
 	}
 }
