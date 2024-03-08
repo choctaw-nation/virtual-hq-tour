@@ -86,7 +86,7 @@ export class MapConstructor {
 		this.map = map( 'map', {
 			crs: CRS.Simple,
 			minZoom: this.MIN_ZOOM,
-			layers: [ this.firstFloorImage, this.secondFloorImage ],
+			layers: [ this.firstFloorImage ],
 		} );
 
 		this.map.fitBounds( this.mapBounds );

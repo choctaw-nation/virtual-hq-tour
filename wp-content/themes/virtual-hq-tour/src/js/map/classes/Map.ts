@@ -1,6 +1,14 @@
 import 'leaflet/dist/leaflet.css';
 import '../../../styles/components/leaflet.scss';
-import { LatLngTuple, LayerGroup, control, layerGroup } from 'leaflet';
+import {
+	Circle,
+	LatLngTuple,
+	LayerGroup,
+	Marker,
+	Polygon,
+	control,
+	layerGroup,
+} from 'leaflet';
 import { MapConstructor } from './MapConstructor';
 
 export default class Map extends MapConstructor {
@@ -18,7 +26,6 @@ export default class Map extends MapConstructor {
 		this.initLayerControl();
 		this.map.addEventListener( 'baselayerchange', ( ev ) => {
 			const { name } = ev;
-			console.log( name );
 			switch ( name ) {
 				case 'First Floor':
 					this.secondFloor.remove();
@@ -38,16 +45,16 @@ export default class Map extends MapConstructor {
 	private initLayerControl() {
 		this.secondFloor = layerGroup( [
 			this.secondFloorImage,
-			...Object.values( this.initSecondFloorZones() ),
+			...this.initSecondFloorZones(),
 		] );
 
-		this.outdoorZones = layerGroup(
-			Object.values( this.initOutdoorZones() )
-		).addTo( this.map );
+		this.outdoorZones = layerGroup( this.initOutdoorZones() ).addTo(
+			this.map
+		);
 
 		this.firstFloor = layerGroup( [
 			this.firstFloorImage,
-			...Object.values( this.initFirstFloorZones() ),
+			...this.initFirstFloorZones(),
 		] ).addTo( this.map );
 
 		this.layerControl = control
@@ -61,13 +68,15 @@ export default class Map extends MapConstructor {
 				}
 			)
 			.addTo( this.map );
+
+		this.addLegend();
 	}
 
 	/**
 	 * Inits the First Floor Elements of the Map
 	 * @returns an object of Leaflet Elements (Markers, Polygons, Circles, etc.)
 	 */
-	private initFirstFloorZones(): Object {
+	private initFirstFloorZones(): Array< Polygon | Circle > {
 		const firstFloorWest = this.addPolygon(
 			[
 				this.topLeft,
@@ -131,20 +140,20 @@ export default class Map extends MapConstructor {
 			7
 		);
 
-		return {
+		return [
 			rootsCafe,
 			hallOfChiefs,
 			firstFloorWest,
 			chiefsOffice,
 			mainLobby,
-		};
+		];
 	}
 
 	/**
 	 * Inits the Outdoor Elements of the Map
 	 * @returns an object of Leaflet Elements (Markers, Polygons, Circles, etc.)
 	 */
-	private initOutdoorZones(): Object {
+	private initOutdoorZones(): Array< Polygon > {
 		const eastCourtyard = this.addPolygon(
 			[
 				[ this.topLeft[ 0 ] - 55, this.topLeft[ 1 ] + 150 ],
@@ -190,18 +199,59 @@ export default class Map extends MapConstructor {
 			3
 		);
 
-		return {
-			eastCourtyard,
-			westCourtyard,
-			frontEntrance,
-		};
+		return [ eastCourtyard, westCourtyard, frontEntrance ];
 	}
 
-	private initSecondFloorZones(): Object {
+	private initSecondFloorZones(): Array< Marker > {
 		const secondFloor = this.addMarker(
 			[ this.topLeft[ 0 ] - 110, this.topLeft[ 1 ] + 125 ],
 			10
 		);
-		return { secondFloor };
+		return [ secondFloor ];
+	}
+
+	private addLegend() {
+		const legend = control( { position: 'bottomright' } );
+		legend.onAdd = () => {
+			const div = document.createElement( 'div' );
+			div.innerHTML = `
+				<div class="legend">
+					<div class="legend__item">
+						<div class="legend__color" style="background-color: red;"></div>
+						<p class="legend__text">First Floor West Wing</p>
+					</div>
+					<div class="legend__item">
+						<div class="legend__color" style="background-color: green;"></div>
+						<p class="legend__text">Main Lobby</p>
+					</div>
+					<div class="legend__item">
+						<div class="legend__color" style="background-color: purple;"></div>
+						<p class="legend__text">Chiefs Office</p>
+					</div>
+					<div class="legend__item">
+						<div class="legend__color" style="background-color: blue;"></div>
+						<p class="legend__text">Hall of Chiefs</p>
+					</div>
+					<div class="legend__item">
+						<div class="legend__color" style="background-color: brown;"></div>
+						<p class="legend__text">Roots Cafe</p>
+					</div>
+					<div class="legend__item">
+						<div class="legend__color" style="background-color: coral;"></div>
+						<p class="legend__text">East Courtyard</p>
+					</div>
+					<div class="legend__item">
+						<div class="legend__color" style="background-color: gold;"></div>
+						<p class="legend__text">West Courtyard</p>
+					</div>
+					<div class="legend__item">
+						<div class="legend__color" style="background-color: white;"></div>
+						<p class="legend__text">Front Entrance</p>
+					</div>
+				</div>
+			`;
+			return div;
+		};
+		legend.addTo( this.map );
 	}
 }
