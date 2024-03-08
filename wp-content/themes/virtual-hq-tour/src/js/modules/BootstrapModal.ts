@@ -1,5 +1,4 @@
 import { Modal } from 'bootstrap';
-
 /**
  * Dynamically create a Bootstrap Modal
  */

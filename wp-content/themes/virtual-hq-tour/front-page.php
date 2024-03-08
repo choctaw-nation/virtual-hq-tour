@@ -23,12 +23,12 @@ get_header();
 					the top-right of the map.</p>
 			</div>
 			<div class="col-12 col-md-9 text-center position-relative">
-				<?php get_template_part( 'template-parts/content', 'map' ); ?>
+				<?php get_template_part( 'template-parts/map', 'map' ); ?>
 			</div>
 		</section>
 	</div>
 </main>
 <?php
-get_template_part( 'template-parts/content', 'welcome-modal' );
-get_template_part( 'template-parts/content', 'video-modal' );
+get_template_part( 'template-parts/modal', 'welcome-video' );
+get_template_part( 'template-parts/modal', 'video' );
 get_footer();
