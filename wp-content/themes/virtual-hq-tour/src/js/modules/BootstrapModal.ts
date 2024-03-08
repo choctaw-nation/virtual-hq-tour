@@ -4,9 +4,9 @@ import { Modal } from 'bootstrap';
  */
 export default class BootstrapModal {
 	protected modalEl: Element;
-	protected modal: Modal;
-	protected modalTitle: HTMLElement;
-	protected modalBody: HTMLElement;
+	public modal: Modal;
+	protected modalTitle?: HTMLElement;
+	protected modalBody?: HTMLElement;
 
 	constructor( el: string | Element, config?: Partial< Modal.Options > ) {
 		this.setModalEl( el );
@@ -26,7 +26,9 @@ export default class BootstrapModal {
 	}
 
 	protected resetModal() {
-		this.modalTitle.textContent = '';
-		this.modalBody.innerHTML = '';
+		if ( this.modalTitle && this.modalBody ) {
+			this.modalTitle.textContent = '';
+			this.modalBody.innerHTML = '';
+		}
 	}
 }
