@@ -31,10 +31,10 @@ import {
 } from 'leaflet';
 
 type ElementTypes = 'marker' | 'circle' | 'polygon';
-type ElementOptions = {
+export type ElementOptions = {
 	coords: LatLngExpression[] | LatLngExpression | LatLng[];
 	options?: CircleOptions | PolylineOptions;
-	video: number | number[];
+	video: { title: string; id: number; locationLabel: string };
 };
 
 /**
@@ -86,7 +86,7 @@ export class MapConstructor {
 		this.map = map( 'map', {
 			crs: CRS.Simple,
 			minZoom: this.MIN_ZOOM,
-			layers: [ this.firstFloorImage, this.secondFloorImage ],
+			layers: [ this.firstFloorImage ],
 		} );
 
 		this.map.fitBounds( this.mapBounds );
@@ -103,7 +103,7 @@ export class MapConstructor {
 	protected addPolygon(
 		coords: LatLngTuple[],
 		options: PolylineOptions,
-		video: number
+		video: ElementOptions[ 'video' ]
 	): Polygon {
 		return this.addElement( 'polygon', {
 			coords,
@@ -119,7 +119,10 @@ export class MapConstructor {
 	 *
 	 * @link https://leafletjs.com/reference.html#marker
 	 */
-	protected addMarker( coords: LatLngTuple, video: number ): Marker {
+	protected addMarker(
+		coords: LatLngTuple,
+		video: ElementOptions[ 'video' ]
+	): Marker {
 		return this.addElement( 'marker', { coords, video } ) as Marker;
 	}
 
@@ -134,7 +137,7 @@ export class MapConstructor {
 	protected addCircle(
 		coords: LatLngTuple,
 		options: CircleOptions,
-		video: number | number[]
+		video: ElementOptions[ 'video' ]
 	): Circle {
 		return this.addElement( 'circle', {
 			coords,
@@ -173,8 +176,12 @@ export class MapConstructor {
 				break;
 		}
 
-		element.addEventListener( 'click', () => {
-			this.handleModal( video );
+		element.bindPopup( this.videoPopups.getPopup( video ) );
+		element.on( {
+			click: () => this.handleModal( video ),
+			mouseover: ( ev ) => {
+				ev.target.openPopup();
+			},
 		} );
 		return element;
 	}
@@ -183,16 +190,10 @@ export class MapConstructor {
 	 * Handles the modal for the video
 	 * @param videoId The id of the video to open
 	 */
-	private handleModal( video: number | number[] ): void {
-		if ( Array.isArray( video ) ) {
-			video.forEach( ( vid ) => {
-				this.handleModal( vid );
-			} );
-		} else {
-			new VideoModal(
-				this.videoPopups.getVideoTitle( video ),
-				this.videoPopups.getLiteVimeo( video, false )
-			);
-		}
+	private handleModal( video: ElementOptions[ 'video' ] ): void {
+		new VideoModal(
+			video.title,
+			this.videoPopups.getLiteVimeo( video, false )
+		);
 	}
 }
