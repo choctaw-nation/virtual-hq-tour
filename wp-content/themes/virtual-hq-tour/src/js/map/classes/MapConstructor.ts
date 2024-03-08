@@ -186,6 +186,7 @@ export class MapConstructor {
 				this.handleModal( video );
 			},
 			mouseover: ( ev ) => {
+				if ( this.isMobile ) return;
 				ev.target.openPopup();
 			},
 		} );
