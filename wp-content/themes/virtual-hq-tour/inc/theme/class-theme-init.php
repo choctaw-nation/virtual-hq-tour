@@ -32,7 +32,6 @@ class Theme_Init {
 	/** Load required files. */
 	private function load_required_files() {
 		$base_path = get_template_directory() . '/inc';
-		require_once $base_path . '/component-classes/class-cno-content-sections.php';
 		require_once $base_path . '/theme/theme-functions.php';
 
 		$asset_loaders = array( 'enum-enqueue-type', 'class-asset-loader' );
