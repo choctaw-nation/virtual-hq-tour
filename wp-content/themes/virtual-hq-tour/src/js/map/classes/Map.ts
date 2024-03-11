@@ -17,6 +17,7 @@ export default class Map extends MapConstructor {
 	 * The Top Left Corner of the First Floor West Wing
 	 */
 	private topLeft: LatLngTuple;
+	private bLChiefsOffice: LatLngTuple;
 
 	private locations = {
 		firstFloor: {
@@ -175,17 +176,20 @@ export default class Map extends MapConstructor {
 			}
 		);
 
-		const bLChiefsOffice = [
+		this.bLChiefsOffice = [
 			this.topLeft[ 0 ] - 108,
 			this.topLeft[ 1 ] + 110,
 		] as LatLngTuple;
 
 		const chiefsOffice = this.addPolygon(
 			[
-				bLChiefsOffice, // BL
-				[ bLChiefsOffice[ 0 ] + 30, bLChiefsOffice[ 1 ] + 10 ], // TL
+				this.bLChiefsOffice, // BL
+				[
+					this.bLChiefsOffice[ 0 ] + 30,
+					this.bLChiefsOffice[ 1 ] + 10,
+				], // TL
 				[ this.topLeft[ 0 ] - 83, this.topLeft[ 1 ] + 142 ], // TR
-				[ bLChiefsOffice[ 0 ] - 8, bLChiefsOffice[ 1 ] + 22 ], // BR
+				[ this.bLChiefsOffice[ 0 ] - 8, this.bLChiefsOffice[ 1 ] + 22 ], // BR
 			],
 			{ color: zones.chiefsOffice.color },
 			{
@@ -263,10 +267,16 @@ export default class Map extends MapConstructor {
 				[ this.topLeft[ 0 ], 0 ],
 				[ this.topLeft[ 0 ], this.topLeft[ 1 ] ],
 				[ this.topLeft[ 0 ] - 82.5, this.topLeft[ 1 ] + 115 ],
-				[ this.topLeft[ 0 ] - 80, this.topLeft[ 1 ] + 140 ],
-				[ this.topLeft[ 0 ] - 55, this.topLeft[ 1 ] + 140 ],
+				[
+					this.bLChiefsOffice[ 0 ] + 30,
+					this.bLChiefsOffice[ 1 ] + 10,
+				],
+				[ this.topLeft[ 0 ] - 83, this.topLeft[ 1 ] + 142 ],
+				[ this.topLeft[ 0 ] - 55, this.topLeft[ 1 ] + 140 ], // tl
 				[ this.topLeft[ 0 ] - 40, this.topLeft[ 1 ] + 130 ],
-				[ this.topLeft[ 0 ] - 30, this.topLeft[ 1 ] + 80 ],
+				[ this.topLeft[ 0 ] - 37, this.topLeft[ 1 ] + 136 ],
+				[ this.topLeft[ 0 ] - 28, this.topLeft[ 1 ] + 82 ], // BL
+				[ this.topLeft[ 0 ] + 22, this.topLeft[ 1 ] + 92 ], // TL
 				[ 300, this.topLeft[ 1 ] + 80 ],
 			],
 			{ color: zones.westCourtyard.color },
@@ -279,7 +289,7 @@ export default class Map extends MapConstructor {
 		const frontEntrance = this.addPolygon(
 			[
 				[ this.topLeft[ 0 ] - 55, this.topLeft[ 1 ] - 38 ],
-				[ this.topLeft[ 0 ] - 55, 0 ],
+				[ this.topLeft[ 0 ] - 100, 0 ],
 				[ 0, 0 ],
 				[ 0, 400 ],
 				[ 60, 400 ],
