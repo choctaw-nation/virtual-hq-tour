@@ -137,6 +137,7 @@ export default class Legend {
 			button.setAttribute( 'aria-expanded', 'true' );
 		} else {
 			button.setAttribute( 'aria-expanded', 'false' );
+			button.classList.add( 'collapsed' );
 		}
 		button.setAttribute( 'aria-controls', item.id );
 		button.textContent = item.title;
