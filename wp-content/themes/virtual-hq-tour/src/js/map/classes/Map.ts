@@ -98,8 +98,8 @@ export default class Map extends MapConstructor {
 			title: 'Second Floor',
 			zones: {
 				secondFloor: {
-					color: 'black',
-					label: 'Second Floor',
+					color: 'blue',
+					label: 'Staircase Marker',
 					video: {
 						id: 915708766,
 						title: 'Up the Staircase',
