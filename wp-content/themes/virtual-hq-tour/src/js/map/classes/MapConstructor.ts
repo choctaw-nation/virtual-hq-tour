@@ -174,18 +174,18 @@ export class MapConstructor {
 				break;
 		}
 
-		element.bindPopup( this.videoPopups.getPopup( video ) );
+		// element.bindPopup( this.videoPopups.getPopup( video ) );
 		element.on( {
 			click: () => {
 				this.handleModal( video );
 			},
-			mouseover: ( ev ) => {
-				if ( this.isMobile ) {
-					return;
-				} else {
-					ev.target.openPopup();
-				}
-			},
+			// mouseover: ( ev ) => {
+			// 	if ( this.isMobile ) {
+			// 		return;
+			// 	} else {
+			// 		ev.target.openPopup();
+			// 	}
+			// },
 		} );
 		return element;
 	}
