@@ -328,18 +328,32 @@ export default class Map extends MapConstructor {
 			'gap-2',
 		];
 		legendControl.onAdd = ( map ) => {
-			const div = document.createElement( 'div' );
-			div.classList.add( ...legendClasses );
-			div.id = 'legend';
+			const legendContainer = document.createElement( 'div' );
+			legendContainer.classList.add( ...legendClasses );
+			legendContainer.id = 'legend';
 			const legendToggle = document.createElement( 'button' );
-			legendToggle.classList.add( 'btn', 'btn-secondary' );
+			legendToggle.classList.add( 'btn', 'btn-outline-secondary', 'm-1' );
 			legendToggle.textContent = 'Show Legend';
-			legendToggle.addEventListener( 'click', () => {
-				const legend = new Legend( this.locations, legendToggle );
-				div.innerHTML = legend.getLegendMarkup();
+			legendToggle.addEventListener( 'click', ( ev ) => {
+				if ( ev.target?.innerText !== 'Hide Legend' ) {
+					const legend = new Legend( this.locations, legendToggle );
+					const legendMarkup = legend.getLegendMarkup();
+					legendContainer.insertAdjacentHTML(
+						'afterbegin',
+						legendMarkup
+					);
+					setTimeout( () => {
+						legendToggle.textContent = 'Hide Legend';
+					}, 0 );
+				} else {
+					legendToggle.textContent = 'Show Legend';
+					const accordion =
+						document.getElementById( 'legendAccordion' );
+					accordion?.remove();
+				}
 			} );
-			div.appendChild( legendToggle );
-			return div;
+			legendContainer.appendChild( legendToggle );
+			return legendContainer;
 		};
 		legendControl.addTo( this.map );
 	}
