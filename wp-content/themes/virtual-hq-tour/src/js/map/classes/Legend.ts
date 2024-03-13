@@ -177,7 +177,7 @@ export default class Legend {
 			legendItem.classList.add( ...itemClasses );
 			const itemColor = document.createElement( 'div' );
 			itemColor.classList.add( 'legend__color' );
-			itemColor.style.backgroundColor = color;
+			itemColor.style.backgroundColor = color ?? 'transparent';
 			legendItem.appendChild( itemColor );
 			const itemText = document.createElement( 'p' );
 			itemText.classList.add( 'legend__text', 'small' );
