@@ -24,10 +24,10 @@ $col_class = 'col-12 col-md-9';
 			?>
 		<div class="col d-flex flex-column">
 			<?php $video_title = esc_textarea( get_sub_field( 'video_title' ) ); ?>
-			<h2 class='mb-2 fs-4'><?php echo $video_title; ?></h2>
-			<div class="ratio ratio-16x9 mt-auto">
+			<div class="ratio ratio-16x9 mb-2">
 				<lite-vimeo videoid="<?php the_sub_field( 'video' ); ?>" videotitle="<?php echo $video_title; ?>"></lite-vimeo>
 			</div>
+			<h2 class='fs-6 fw-normal font-body'><?php echo $video_title; ?></h2>
 		</div>
 		<?php endwhile; ?>
 	</section>

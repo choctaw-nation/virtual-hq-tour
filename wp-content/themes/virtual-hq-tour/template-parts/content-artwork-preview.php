@@ -23,8 +23,8 @@ $lightbox_args = array(
 			'full',
 			false,
 			array(
-				'class'   => 'w-100 h-auto',
-				'loading' => 'lazy',
+				'class' => 'w-100 h-auto',
+				// 'loading' => 'lazy',
 			)
 		);
 		?>
