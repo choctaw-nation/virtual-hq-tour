@@ -12,6 +12,24 @@ import {
 import { MapConstructor } from './MapConstructor';
 import Legend from './Legend';
 
+type Zone = {
+	color?: string;
+	label: string;
+	video: {
+		id: number;
+		title: string;
+	};
+};
+
+type Locations = {
+	[ layerControlGroup: string ]: {
+		title: string;
+		zones: {
+			[ zone: string ]: Zone;
+		};
+	};
+};
+
 export default class Map extends MapConstructor {
 	/**
 	 * The Top Left Corner of the First Floor West Wing
@@ -19,7 +37,7 @@ export default class Map extends MapConstructor {
 	private topLeft: LatLngTuple;
 	private bLChiefsOffice: LatLngTuple;
 
-	private locations = {
+	private locations: Locations = {
 		firstFloor: {
 			title: 'First Floor',
 			zones: {
@@ -98,7 +116,7 @@ export default class Map extends MapConstructor {
 			title: 'Second Floor',
 			zones: {
 				secondFloor: {
-					color: 'blue',
+					// color: 'blue',
 					label: 'Staircase Marker',
 					video: {
 						id: 915708766,
@@ -114,6 +132,7 @@ export default class Map extends MapConstructor {
 		super( isMobile );
 		this.topLeft = [ 224, 62 ] as LatLngTuple;
 		this.initLayerControl();
+		this.makeZonesAccessible();
 	}
 
 	/**
@@ -367,5 +386,43 @@ export default class Map extends MapConstructor {
 			return legendContainer;
 		};
 		legendControl.addTo( this.map );
+	}
+
+	/**
+	 * Grab all the zones and make them keyboard-accessible
+	 */
+	private makeZonesAccessible() {
+		const zones = document.querySelectorAll( 'path.leaflet-interactive' );
+		zones.forEach( ( zone ) => {
+			const zoneColor = zone.getAttribute( 'stroke' );
+			if ( ! zoneColor ) {
+				return;
+			}
+			const zoneLabel = this.getZoneLabel( zoneColor );
+			zone.setAttribute( 'tabindex', '0' );
+			zone.setAttribute( 'role', 'button' );
+			zone.setAttribute(
+				'aria-label',
+				`Click to view the tour video for ${ zoneLabel }`
+			);
+		} );
+	}
+
+	private getZoneLabel( zoneColor: string ): string {
+		const zones = Object.values( this.locations );
+		let matchingZone = {} as Zone;
+		zones.forEach( ( location ) => {
+			const match = Object.values( location.zones ).find(
+				( zone ) => zone?.color === zoneColor
+			);
+			if ( match ) {
+				matchingZone = match;
+			}
+		} );
+		if ( matchingZone ) {
+			return matchingZone.label;
+		} else {
+			return `the area`;
+		}
 	}
 }
