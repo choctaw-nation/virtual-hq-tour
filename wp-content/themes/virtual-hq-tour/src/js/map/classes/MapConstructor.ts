@@ -43,7 +43,7 @@ export class MapConstructor {
 	protected map: Map;
 	protected mapBounds: LatLngBoundsLiteral = [
 		[ 0, 0 ],
-		[ 300, 400 ],
+		[ 362, 483 ],
 	];
 	protected MIN_ZOOM;
 	protected videoPopups: VideoPopups;
@@ -154,11 +154,12 @@ export class MapConstructor {
 		args: ElementOptions
 	): Marker | Circle | Polygon {
 		const { coords, options, video } = args;
+		const newCoords = this.calcNewLocation( coords );
 		let element: Marker | Circle | Polygon;
 
 		switch ( type ) {
 			case 'marker':
-				element = marker( coords as LatLngExpression, {
+				element = marker( newCoords as LatLngExpression, {
 					icon: icon( {
 						iconUrl: `${ this.imageBase }/marker-icon.png`,
 						iconRetinaUrl: `${ this.imageBase }/marker-icon-2x.png`,
@@ -167,25 +168,17 @@ export class MapConstructor {
 				} );
 				break;
 			case 'circle':
-				element = circle( coords as LatLng, options );
+				element = circle( newCoords as LatLng, options );
 				break;
 			case 'polygon':
-				element = polygon( coords as LatLngExpression[], options );
+				element = polygon( newCoords as LatLngExpression[], options );
 				break;
 		}
 
-		// element.bindPopup( this.videoPopups.getPopup( video ) );
 		element.on( {
 			click: () => {
 				this.handleModal( video );
 			},
-			// mouseover: ( ev ) => {
-			// 	if ( this.isMobile ) {
-			// 		return;
-			// 	} else {
-			// 		ev.target.openPopup();
-			// 	}
-			// },
 		} );
 		return element;
 	}
@@ -199,5 +192,22 @@ export class MapConstructor {
 			video.title,
 			this.videoPopups.getLiteVimeo( video, false )
 		);
+	}
+
+	protected calcNewLocation(
+		arr: LatLng | LatLngExpression | LatLng[] | number
+	) {
+		const IMAGE_RATIO = 362 / 300;
+		if ( Number.isInteger( arr ) ) {
+			return arr * IMAGE_RATIO;
+		} else {
+			return arr.map( ( val ) => {
+				if ( Array.isArray( val ) ) {
+					return this.calcNewLocation( val );
+				} else {
+					return val * IMAGE_RATIO;
+				}
+			} );
+		}
 	}
 }

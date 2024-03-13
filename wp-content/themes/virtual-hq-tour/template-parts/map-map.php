@@ -7,7 +7,7 @@
 
 ?>
 
-<div id="map">
+<div id="map" class='w-100 h-auto'>
 	<div class="row justify-content-center align-items-center">
 		<div class="col-4">
 			<div class="spinner-border" role="status">
