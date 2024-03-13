@@ -112,7 +112,7 @@ export default class Map extends MapConstructor {
 	/** Constructor */
 	constructor( isMobile = true ) {
 		super( isMobile );
-		this.topLeft = [ 225, 68 ] as LatLngTuple;
+		this.topLeft = [ 224, 62 ] as LatLngTuple;
 		this.initLayerControl();
 	}
 
@@ -178,7 +178,7 @@ export default class Map extends MapConstructor {
 
 		this.bLChiefsOffice = [
 			this.topLeft[ 0 ] - 108,
-			this.topLeft[ 1 ] + 110,
+			this.topLeft[ 1 ] + 112,
 		] as LatLngTuple;
 
 		const chiefsOffice = this.addPolygon(
@@ -218,9 +218,9 @@ export default class Map extends MapConstructor {
 			[
 				[ this.topLeft[ 0 ] - 37, this.topLeft[ 1 ] + 136 ],
 				[ this.topLeft[ 0 ] - 28, this.topLeft[ 1 ] + 82 ], // BL
-				[ this.topLeft[ 0 ] + 22, this.topLeft[ 1 ] + 92 ], // TL
-				[ this.topLeft[ 0 ] + 8, this.topLeft[ 1 ] + 160 ],
-				[ this.topLeft[ 0 ], this.topLeft[ 1 ] + 175 ], // TR
+				[ this.topLeft[ 0 ] + 25, this.topLeft[ 1 ] + 92 ], // TL
+				[ this.topLeft[ 0 ] + 10, this.topLeft[ 1 ] + 160 ],
+				[ this.topLeft[ 0 ] + 5, this.topLeft[ 1 ] + 176 ], // TR
 				[ this.topLeft[ 0 ] - 38, this.topLeft[ 1 ] + 158 ], // BR
 				[ this.topLeft[ 0 ] - 30, this.topLeft[ 1 ] + 136 ], // BR
 			],

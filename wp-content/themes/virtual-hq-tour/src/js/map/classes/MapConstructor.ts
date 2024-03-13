@@ -65,7 +65,7 @@ export class MapConstructor {
 	 */
 	protected initMap() {
 		this.firstFloorImage = imageOverlay(
-			`${ this.imageBase }/map--floor-1.webp`,
+			`${ this.imageBase }/floor-1.webp`,
 			this.mapBounds,
 			{
 				interactive: true,
@@ -73,7 +73,7 @@ export class MapConstructor {
 			}
 		);
 		this.secondFloorImage = imageOverlay(
-			`${ this.imageBase }/map--floor-2.webp`,
+			`${ this.imageBase }/floor-2.webp`,
 			this.mapBounds,
 			{
 				interactive: true,
