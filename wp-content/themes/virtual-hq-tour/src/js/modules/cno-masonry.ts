@@ -1,5 +1,5 @@
 import macy from 'macy';
-macy( {
+const Macy = macy( {
 	container: '#artwork',
 	columns: 1,
 	trueOrder: true,
@@ -14,4 +14,7 @@ macy( {
 			columns: 4,
 		},
 	},
+} );
+document.addEventListener( 'DOMContentLoaded', () => {
+	Macy.recalculate( true );
 } );
