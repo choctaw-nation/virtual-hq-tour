@@ -29,7 +29,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<div class="btn btn-secondary fs-5" data-bs-dismiss="modal">Dismiss</div>
+				<div class="btn btn-primary" data-bs-dismiss="modal">Close Modal</div>
 			</div>
 		</div>
 	</div>

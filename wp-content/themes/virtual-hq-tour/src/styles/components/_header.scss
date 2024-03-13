@@ -18,9 +18,13 @@
 }
 .header-nav {
 	.menu-item {
-		--height-y: 4.8rem;
+		--height-y: 1.6rem;
 		padding-bottom: var(--height-y);
-		margin: var(--height-y) 1rem 0;
+
+		@include m.media-breakpoint-up(lg) {
+			--height-y: 4.8rem;
+			margin: var(--height-y) 1rem 0;
+		}
 	}
 
 	.dropdown:hover {

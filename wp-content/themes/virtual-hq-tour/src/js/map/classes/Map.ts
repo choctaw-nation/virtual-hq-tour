@@ -336,13 +336,14 @@ export default class Map extends MapConstructor {
 			'd-flex',
 			'flex-column',
 			'gap-2',
+			'shadow',
 		];
 		legendControl.onAdd = ( map ) => {
 			const legendContainer = document.createElement( 'div' );
 			legendContainer.classList.add( ...legendClasses );
 			legendContainer.id = 'legend';
 			const legendToggle = document.createElement( 'button' );
-			legendToggle.classList.add( 'btn', 'btn-outline-secondary', 'm-1' );
+			legendToggle.classList.add( 'btn', 'btn-primary' );
 			legendToggle.textContent = 'Show Legend';
 			legendToggle.addEventListener( 'click', ( ev ) => {
 				if ( ev.target?.innerText !== 'Hide Legend' ) {

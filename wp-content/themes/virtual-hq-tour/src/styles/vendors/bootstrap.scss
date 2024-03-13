@@ -84,7 +84,7 @@ $navbar-light-active-color: v.$color-purple--light;
 $navbar-light-hover-color: v.$color-purple--light;
 $navbar-light-color: white;
 $navbar-light-icon-color: white;
-$navbar-light-toggler-border-color: white;
+$navbar-light-toggler-border-color: transparent;
 $navbar-light-brand-color: white;
 $navbar-light-brand-hover-color: v.$color-purple--light;
 
@@ -103,12 +103,14 @@ $offcanvas-color: white;
 * Accordion
 */
 
-$accordion-bg: wheat;
+$accordion-bg: white;
 $accordion-border-color: v.$color-black;
 $accordion-border-radius: 0;
 $accordion-inner-border-radius: 0;
-$accordion-button-bg: wheat;
-$accordion-button-active-bg: whitesmoke;
+$accordion-button-bg: white;
+$accordion-button-active-bg: $primary;
+$accordion-button-active-color: white;
+$accordion-icon-active-color: white;
 
 // ================================================
 

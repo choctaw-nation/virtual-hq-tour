@@ -3,8 +3,10 @@
 }
 
 .legend {
-	background-color: wheat;
+	background-color: white;
 	width: 170px;
+	border-radius: var(--bs-border-radius);
+	overflow: hidden;
 
 	&__color {
 		width: 1rem;

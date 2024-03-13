@@ -24,12 +24,8 @@
 			<nav class="navbar navbar-expand-lg py-0">
 				<a class="navbar-brand d-flex align-items-center flex-grow-0 my-2 align-items-md-center" href="<?php echo esc_url( site_url() ); ?>" class="logo" aria-label="to Home Page">
 					<img src="<?php echo get_template_directory_uri() . '/img/the-great-seal-min.svg'; ?>" alt="The Great Seal of the Choctaw Nation" class='d-inline-block logo' />
-					<div class="site-title ms-2">
-						<span class='site-title--line-1'>
-							Choctaw Nation
-						</span>
-						<br class='d-block d-lg-none' />
-						<span class="site-title--line-2">Virtual Headquarters<br class='d-block d-sm-none' /> Tour</span>
+					<div class="site-title ms-2 fw-bold">
+						<span class="site-title--line-2">Virtual <br class='d-block d-sm-none' />Headquarters<br class='d-block d-sm-none' /> Tour</span>
 					</div>
 				</a>
 				<?php get_template_part( 'template-parts/header/content', 'offcanvas' ); ?>
