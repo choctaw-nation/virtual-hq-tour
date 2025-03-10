@@ -139,29 +139,6 @@ class Theme_Init {
 				'global-styles',
 			)
 		);
-
-		if ( 'prod' === $_ENV['CNO_ENV'] ) {
-			$this->load_google_tag_manager();
-		}
-	}
-
-	/** Load Google Tag Manager in the Head */
-	private function load_google_tag_manager() {
-		wp_enqueue_script( 'google-tag-manager', '', array(), null, array( 'strategy' => 'async' ) );
-
-		add_action(
-			'wp_head',
-			function () {
-				// the function to load the GTM script
-			}
-		);
-
-		add_action(
-			'wp_body_open',
-			function () {
-				// the <noscript> tag
-			}
-		);
 	}
 
 	/**

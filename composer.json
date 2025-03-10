@@ -18,6 +18,10 @@
 			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
 	},
+	"scripts": {
+		"phpcs": "phpcs wp-content/themes/virtual-hq-tour/ --extensions=php --ignore=wp-content/themes/virtual-hq-tour/dist/",
+		"phpcbf": "phpcbf wp-content/themes/virtual-hq-tour/ --extensions=php --ignore=wp-content/themes/virtual-hq-tour/dist/"
+	},
 	"require-dev": {
 		"wp-coding-standards/wpcs": "*"
 	}
