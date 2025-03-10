@@ -7,7 +7,12 @@
 -   `npm i` to install package dependencies
 -   `composer install` to install WPCS linting
 
-# Changelog (Pre-Release)
+# Changelog
+
+## v1.0.1
+
+-   Add CI/CD workflow
+-   Update packages
 
 ## v1.0.0
 
