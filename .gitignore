@@ -47,6 +47,7 @@ auth.json
 /wp-content/uploads/
 /wp-content/autoptimize_404_handler.php
 /wp-content/themes/twenty*/
+/wp-content/themes/*/dist/
 /wp-content/.htaccess
 /wp-content/advanced-cache.php
 /wp-content/autoptimize_404_handler.php
