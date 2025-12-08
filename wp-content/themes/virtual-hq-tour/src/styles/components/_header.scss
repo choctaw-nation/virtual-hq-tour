@@ -2,10 +2,12 @@
 
 .logo {
 	--size: 12rem;
+
 	max-width: var(--size);
 	max-height: var(--size);
 
 	--circle: circle(50% at 50% 50%);
+
 	float: left;
 	shape-outside: var(--circle);
 	clip-path: var(--circle);
@@ -16,13 +18,16 @@
 	top: 8.5rem;
 	display: block;
 }
+
 .header-nav {
 	.menu-item {
 		--height-y: 1.6rem;
+
 		padding-bottom: var(--height-y);
 
 		@include m.media-breakpoint-up(lg) {
 			--height-y: 4.8rem;
+
 			margin: var(--height-y) 1rem 0;
 		}
 	}
@@ -45,6 +50,7 @@
 		--bs-btn-box-shadow: none;
 		--bs-btn-color: white;
 		--bs-btn-hover-color: var(--bs-secondary);
+
 		padding: 0;
 
 		&:hover {
