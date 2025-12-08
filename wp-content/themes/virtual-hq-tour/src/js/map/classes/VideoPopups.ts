@@ -16,9 +16,8 @@ export class VideoPopups {
 
 	/**
 	 * Returns the lite-vimeo web component
-	 * @param {title:string;id:number} video The video to return
-	 * @param {boolean} autoload Whether to autoload the video
-	 * @returns {title:string;id:string}
+	 * @param video    The video to return
+	 * @param autoload Whether to autoload the video
 	 */
 	getLiteVimeo(
 		video: ElementOptions[ 'video' ],
