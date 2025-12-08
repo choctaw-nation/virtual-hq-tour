@@ -5,16 +5,15 @@ export default class WelcomeModal extends BootstrapModal {
 		const modal = document.querySelector( '#welcomeModal' )!;
 		super( modal );
 		if ( document.cookie.includes( 'welcomeModalDismissed=true' ) ) {
-
-		} else {
-			document.addEventListener(
-				'DOMContentLoaded',
-				() => {
-					this.modal.show();
-				},
-				{ once: true }
-			);
+			return;
 		}
+		document.addEventListener(
+			'DOMContentLoaded',
+			() => {
+				this.modal.show();
+			},
+			{ once: true }
+		);
 	}
 
 	protected resetModal() {
