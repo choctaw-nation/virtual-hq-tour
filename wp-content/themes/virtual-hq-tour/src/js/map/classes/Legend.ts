@@ -20,7 +20,7 @@ type AccordionItem = {
 	 * CSS id String
 	 * @example 'firstFloor'
 	 *
-	 * @var id
+	 * @member id
 	 */
 	id: string;
 
@@ -28,14 +28,14 @@ type AccordionItem = {
 	 * Title of the Accordion Item
 	 * @example 'First Floor'
 	 *
-	 * @var title
+	 * @member title
 	 */
 	title: string;
 
 	/**
 	 * Array of Legend items to add
 	 *
-	 * @var items
+	 * @member items
 	 */
 	items: Array< { color: string; text: string } >;
 };
@@ -103,7 +103,7 @@ export default class Legend {
 
 	/**
 	 * Builds the accordion items and appends them to the accordion
-	 * @param item The item to build
+	 * @param item        The item to build
 	 * @param isFirstItem Whether or not this is the first item
 	 */
 	private setAccordionItem( item: AccordionItem, isFirstItem: boolean ) {
@@ -118,7 +118,7 @@ export default class Legend {
 
 	/**
 	 * Builds the accordion header
-	 * @param item The item to build
+	 * @param item        The item to build
 	 * @param isFirstItem Whether or not this is the first item
 	 */
 	private getAccordionHeader(
@@ -147,7 +147,7 @@ export default class Legend {
 
 	/**
 	 * Builds the Accordion Items
-	 * @param item The item to build
+	 * @param item        The item to build
 	 * @param isFirstItem Whether or not this is the first item
 	 */
 	private getAccordionBody(

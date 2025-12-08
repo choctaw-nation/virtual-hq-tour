@@ -110,23 +110,25 @@ class Lightbox {
 		}
 		const gallery = galleryTarget
 			? [
-					...new Set(
-						Array.from(
-							document.querySelectorAll(
-								`[data-gallery="${ galleryTarget }"]`
-							),
-							( v ) =>
-								`${
-									v.dataset.type ? v.dataset.type : ''
-								}${ this.getSrc( v ) }`
-						)
-					),
+				...new Set(
+					Array.from(
+						document.querySelectorAll(
+							`[data-gallery="${ galleryTarget }"]`
+						),
+						( v ) =>
+							`${
+								v.dataset.type ? v.dataset.type : ''
+							}${ this.getSrc( v ) }`
+					)
+				),
 			  ]
 			: [ `${ this.type ? this.type : '' }${ this.src }` ];
 		return gallery;
 	}
 	getYoutubeId( src ) {
-		if ( ! src ) return false;
+		if ( ! src ) {
+			return false;
+		}
 		const matches = src.match(
 			/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
 		);
@@ -139,7 +141,7 @@ class Lightbox {
 		}
 
 		const arr = src.split( '?' );
-		let params = arr.length > 1 ? '?' + arr[ 1 ] : '';
+		const params = arr.length > 1 ? '?' + arr[ 1 ] : '';
 
 		return `https://www.youtube.com/embed/${ youtubeId }${ params }`;
 	}
@@ -337,7 +339,7 @@ Lightbox.allowedEmbedTypes = [
 ];
 Lightbox.allowedMediaTypes = [ ...Lightbox.allowedEmbedTypes, 'image', 'html' ];
 Lightbox.defaultSelector = '[data-toggle="lightbox"]';
-Lightbox.initialize = function ( e ) {
+Lightbox.initialize = function( e ) {
 	e.preventDefault();
 	const lightbox = new Lightbox( this );
 	lightbox.show();
