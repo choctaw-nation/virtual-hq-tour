@@ -1,9 +1,7 @@
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config.js' );
 
-/** The name of the theme. Alter me! */
-const THEME_NAME = 'virtual-hq-tour';
 
-/** The location of your theme. */
+const THEME_NAME = 'virtual-hq-tour';
 const THEME_DIR = `/wp-content/themes/${ THEME_NAME }`;
 
 /**
