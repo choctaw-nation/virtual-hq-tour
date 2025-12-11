@@ -2,7 +2,7 @@
  * MapConstructor
  * Helps build the Leaflet Map with utility functions
  *
- * @package ChoctawNation
+ * @package
  * @subpackage Leaflet
  */
 import { VideoPopups } from './VideoPopups';
@@ -92,9 +92,9 @@ export class MapConstructor {
 
 	/**
 	 * Adds a polygon to the map
-	 * @param coords The coords of the polygon
+	 * @param coords  The coords of the polygon
 	 * @param options The polygon Options
-	 * @param video The id of the video to link up
+	 * @param video   The id of the video to link up
 	 *
 	 * @link https://leafletjs.com/reference.html#polygon
 	 */
@@ -113,7 +113,7 @@ export class MapConstructor {
 	/**
 	 * Adds a marker to the map
 	 * @param coords The coords of the marker
-	 * @param video the id of the video to link up
+	 * @param video  the id of the video to link up
 	 *
 	 * @link https://leafletjs.com/reference.html#marker
 	 */
@@ -126,9 +126,9 @@ export class MapConstructor {
 
 	/**
 	 * Adds a circle to the map
-	 * @param coords The coords of the circle
+	 * @param coords  The coords of the circle
 	 * @param options The Circle Options
-	 * @param video The id of the video to link up
+	 * @param video   The id of the video to link up
 	 *
 	 * @link https://leafletjs.com/reference.html#circle
 	 */
@@ -146,7 +146,7 @@ export class MapConstructor {
 
 	/**
 	 * Adds a Leaflet element to the map and binds a popup with the video elements to it
-	 * @param {ElementTypes} type The type of element to add
+	 * @param {ElementTypes}   type The type of element to add
 	 * @param {ElementOptions} args The arguments to pass to the element
 	 */
 	private addElement(
@@ -200,14 +200,12 @@ export class MapConstructor {
 		const IMAGE_RATIO = 362 / 300;
 		if ( Number.isInteger( arr ) ) {
 			return arr * IMAGE_RATIO;
-		} else {
-			return arr.map( ( val ) => {
-				if ( Array.isArray( val ) ) {
-					return this.calcNewLocation( val );
-				} else {
-					return val * IMAGE_RATIO;
-				}
-			} );
 		}
+		return arr.map( ( val ) => {
+			if ( Array.isArray( val ) ) {
+				return this.calcNewLocation( val );
+			}
+			return val * IMAGE_RATIO;
+		} );
 	}
 }

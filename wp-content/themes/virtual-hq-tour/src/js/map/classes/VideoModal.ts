@@ -6,9 +6,9 @@ import BootstrapModal from '../../modules/BootstrapModal';
 export class VideoModal extends BootstrapModal {
 	/**
 	 * Construct the Modal
-	 * @param trigger The button that triggers the modal
+	 * @param trigger           The button that triggers the modal
 	 * @param modalTitleContent The Modal Title
-	 * @param modalBodyContent The lite-vimeo web component(s)
+	 * @param modalBodyContent  The lite-vimeo web component(s)
 	 */
 	constructor( modalTitleContent: string, modalBodyContent: string ) {
 		const modalEl = document.getElementById( 'videoModal' )!;
@@ -22,7 +22,7 @@ export class VideoModal extends BootstrapModal {
 	 * Construct the Modal's Contents
 	 *
 	 * @param modalTitleContent The Modal Title
-	 * @param modalBodyContent The lite-vimeo web component(s)
+	 * @param modalBodyContent  The lite-vimeo web component(s)
 	 */
 	private initModal( modalTitleContent: string, modalBodyContent: string ) {
 		this.modalTitle.textContent = modalTitleContent;

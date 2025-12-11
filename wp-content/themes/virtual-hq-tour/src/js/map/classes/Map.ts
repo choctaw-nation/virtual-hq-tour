@@ -165,7 +165,7 @@ export default class Map extends MapConstructor {
 
 	/**
 	 * Inits the First Floor Elements of the Map
-	 * @returns an object of Leaflet Elements (Markers, Polygons, Circles, etc.)
+	 * @return an object of Leaflet Elements (Markers, Polygons, Circles, etc.)
 	 */
 	private initFirstFloorZones(): Array< Polygon | Circle > {
 		const { zones } = this.locations.firstFloor;
@@ -261,7 +261,7 @@ export default class Map extends MapConstructor {
 
 	/**
 	 * Inits the Outdoor Elements of the Map
-	 * @returns an object of Leaflet Elements (Markers, Polygons, Circles, etc.)
+	 * @return an object of Leaflet Elements (Markers, Polygons, Circles, etc.)
 	 */
 	private initOutdoorZones(): Array< Polygon > {
 		const { zones } = this.locations.outdoorZones;
@@ -330,7 +330,7 @@ export default class Map extends MapConstructor {
 
 	/**
 	 * Inits the Second Floor Elements of the Map
-	 * @returns an object of Leaflet Elements (Markers, Polygons, Circles, etc.)
+	 * @return an object of Leaflet Elements (Markers, Polygons, Circles, etc.)
 	 */
 	private initSecondFloorZones(): Array< Marker > {
 		const { zones } = this.locations.secondFloor;
@@ -421,8 +421,7 @@ export default class Map extends MapConstructor {
 		} );
 		if ( matchingZone ) {
 			return matchingZone.label;
-		} else {
-			return `the area`;
 		}
+		return `the area`;
 	}
 }

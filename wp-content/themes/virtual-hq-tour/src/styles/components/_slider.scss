@@ -30,9 +30,7 @@
 
 // Mixin for Color Overrides
 @mixin swiperStyles($color: var(--color-secondary)) {
-
 	.slider {
-
 		&__info {
 			color: $color;
 		}
@@ -56,9 +54,7 @@
 		margin-top: 2rem;
 
 		&.swiper-pagination-bullets {
-
 			.swiper-pagination-bullet {
-
 				&-active {
 					background-color: $color;
 				}
@@ -70,26 +66,21 @@
 		color: $color;
 
 		&-next {
-
 			@extend .swiper-button;
 		}
 
 		&-prev {
-
 			@extend .swiper-button;
 		}
 	}
 }
 
 #entertainment-slider {
-
 	@include swiperStyles(var(--color-primary));
 }
 
 #registration-slider {
-
 	.slider {
-
 		&__info {
 			color: white;
 			margin-bottom: 2rem;
